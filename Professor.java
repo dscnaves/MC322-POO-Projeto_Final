@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 // O Professor herda atributos e metodos da classe Usuario
 public class Professor extends Usuario {
@@ -6,12 +7,10 @@ public class Professor extends Usuario {
     private ArrayList<Aluno> alunos;
     private ArrayList<Treino> treinosCriados;
 
-    public Professor(String nome,String userName, String senha, ArrayList<Aluno> alunos, ArrayList<Treino> treinosCriados){
+    public Professor(String nome,String userName, String senha){
         super(nome, userName, senha);
         alunos = new ArrayList<>();
         treinosCriados = new ArrayList<>();
-        this.alunos = alunos; 
-        this.treinosCriados = treinosCriados;
     }
 
     public void criarTreino(){
@@ -30,7 +29,8 @@ public class Professor extends Usuario {
 
     }
 
-    public void mostrarMenuPrincipal(){
-        // Nao sei ainda como implementar
+    @Override // Essa será a implementacao do metodo abstrato. Aqui implementaremos a interface especifica do Professor
+    public void mostrarMenuPrincipal(Scanner entrada){
+        System.out.println("Bem-vindo à interface do professor!\n");
     }   
 }

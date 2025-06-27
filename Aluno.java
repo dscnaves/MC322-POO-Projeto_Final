@@ -2,6 +2,7 @@
 // O Aluno herda atributos e metodos da classe Usuario
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Aluno extends Usuario{
     private ArrayList<Treino> treinosRecebidos;
@@ -26,7 +27,8 @@ public class Aluno extends Usuario{
 
     }
 
-    public void mostrarMenuPrincipal(){
-        // Nao sei ainda como implementar
+    @Override  // Essa será a implementacao do metodo abstrato. Aqui implementaremos a interface especifica do Aluno
+    public void mostrarMenuPrincipal(Scanner entrada){
+        System.out.println("Bem-vindo à interface do aluno!\n");
     }
 }

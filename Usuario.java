@@ -1,4 +1,6 @@
-public class Usuario {
+import java.util.Scanner;
+
+public abstract class Usuario {
     private String nome;
     private String userName;
     private String senha;
@@ -21,7 +23,5 @@ public class Usuario {
         return senha;
     }
 
-    public void mostrarMenuPrincipal(){
-        // ainda nao sei como implementar, acho q poderia ser abstract e assim implemantarmos nas classes Aluno e Professor
-    }    
+    public abstract void mostrarMenuPrincipal(Scanner entrada); // Metodo abstrato que implementaremos na classe aluno e professor.
 }

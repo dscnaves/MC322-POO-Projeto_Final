@@ -22,10 +22,18 @@ public class Main {
             entrada.nextLine(); // limpa o buffer
 
             String nome, userName, senha;
+            int caso; // Usada para determinar se será um Aluno ou Professor
             switch (opcao){
                 case 1:
                     while (true) {
                         try {
+                            System.out.println("Selecione alguma das opções abaixo:\n" +
+                            "[1] - Para se cadastrar como Aluno\n" + 
+                            "[2] - Para se cadastrar como Professor  \n");
+
+                            caso = entrada.nextInt();
+                            entrada.nextLine(); // limpa o buffer
+
                             System.out.println("Qual o seu nome:");
                             nome = entrada.nextLine();
 
@@ -35,7 +43,7 @@ public class Main {
                             System.out.println("Crie uma senha:");
                             senha = entrada.nextLine();
 
-                            sistema.cadastro(nome, userName, senha);
+                            sistema.cadastro(nome, userName, senha, caso);
                             break;
 
                         } 
@@ -54,7 +62,9 @@ public class Main {
                             System.out.println("Digite sua senha:");
                             senha = entrada.nextLine();
 
-                            sistema.login(userName, senha);
+                            Usuario user = sistema.login(userName, senha); // o metodo login retornará ou um aluno ou um professor. Assim vamos usar Usuario como variavel, pois nao sabemos qual deles será retornado.
+                            System.out.println("Debug: Tipo real do usuário: " + user.getClass().getSimpleName());
+                            user.mostrarMenuPrincipal(entrada); // Isso chama automaticamente a interface correta, se for aluno exibira seu respectivo menu (o mesmo acontecera para o professor)
                             break;
 
                         } 
@@ -75,5 +85,13 @@ public class Main {
             }
         }
         entrada.close();
+    }
+
+    public static void interfaceAluno(Scanner entrada){
+
+    }
+
+    public static void interfaceProfessor(Scanner entrada){
+
     }
 }
