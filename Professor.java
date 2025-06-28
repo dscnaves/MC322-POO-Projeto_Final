@@ -1,11 +1,11 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-// O Professor herda atributos e metodos da classe Usuario
 public class Professor extends Usuario {
 
-    private ArrayList<Aluno> alunos;
-    private ArrayList<Treino> treinosCriados;
+    // O Professor herda atributos e metodos da classe Usuario
+    private final ArrayList<Aluno> alunos;
+    private final ArrayList<Treino> treinosCriados;
 
     public Professor(String nome,String userName, String senha){
         super(nome, userName, senha);

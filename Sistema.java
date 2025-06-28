@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class Sistema {
-    private static ArrayList<Usuario> usuarios = new ArrayList<>();
+    private static final ArrayList<Usuario> usuarios = new ArrayList<>();
 
     public Sistema(){
         // Acho que nao precisará desse construtor

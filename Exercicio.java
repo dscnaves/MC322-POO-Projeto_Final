@@ -1,13 +1,28 @@
 public class Exercicio {
-    private String nome;
-    private int repeticoes;
-    private int series;
-    private int duracaoSegundos;
 
-    public Exercicio(String nome, int repeticoes, int series, int duracao) {
+    private final String nome;
+    private final int numSeries;
+    private final Tempo intervalo;
+
+    // Construtor
+    public Exercicio(String nome, int numSeries, Tempo intervalo) {
         this.nome = nome;
-        this.repeticoes = repeticoes;
-        this.series = series;
-        this.duracaoSegundos = duracao;
+        this.numSeries = numSeries;
+        this.intervalo = intervalo;
+    }
+
+    // Obtém o nome do exercício
+    public String getNome(){
+        return nome;
+    }
+
+    // Obtém o número de séries
+    public int getNumSeries(){
+        return  numSeries;
+    }
+
+    // Obtém o tempo de intervalo entre cada série
+    public Tempo getIntervalo(){
+        return intervalo;
     }
 }

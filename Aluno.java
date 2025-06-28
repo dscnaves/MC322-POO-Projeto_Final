@@ -1,12 +1,12 @@
-
-// O Aluno herda atributos e metodos da classe Usuario
+// O Aluno herda atributos e metodos da classe Usuário
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Aluno extends Usuario{
-    private ArrayList<Treino> treinosRecebidos;
-    private ArrayList<ProgressoTreino> progresso;
+public class Aluno extends Usuario {
+
+    private final ArrayList<Treino> treinosRecebidos;
+    private ArrayList<TreinoExecutavel> progresso;
 
     public Aluno(String nome,String userName, String senha){
         super(nome, userName, senha);
@@ -15,7 +15,7 @@ public class Aluno extends Usuario{
     }
 
 
-    public void registrarProgresso(ProgressoTreino progresso){
+    public void registrarProgresso(TreinoExecutavel progresso){
 
     }
 
