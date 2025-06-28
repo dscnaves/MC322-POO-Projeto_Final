@@ -11,7 +11,7 @@ public class Main {
         SwingUtilities.invokeLater(() -> {
             JFrame frame = new JFrame("Sistema");
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.setSize(400, 200);
+            frame.setSize(1000, 800);//teste
 
             // Instânciamento do sistema (usado para cadastro e login de usuários)
             Sistema sistema = new Sistema();
