@@ -18,8 +18,8 @@ public class Sistema {
                 throw new CadastroInvalidoException("O userName '" + userName + "' já está em uso. Por favor insira outro userName.");
             }
         }
-
-        if(caso == 1)
+        // 0 = Aluno, 1 = Professor
+        if(caso == 0)
             usuarios.add(new Aluno(nome, userName, senha)); // Se user e senha validos cadastramos como Aluno (caso 1)
         else    
             usuarios.add(new Professor(nome, userName, senha)); // Se user e senha validos cadastramos como Professor (caso 2)
