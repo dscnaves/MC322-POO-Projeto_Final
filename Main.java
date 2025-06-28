@@ -1,6 +1,7 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+// oi main
 public class Main {
 
     public static void main(String[] args) {
@@ -87,11 +88,4 @@ public class Main {
         entrada.close();
     }
 
-    public static void interfaceAluno(Scanner entrada){
-
-    }
-
-    public static void interfaceProfessor(Scanner entrada){
-
-    }
 }
