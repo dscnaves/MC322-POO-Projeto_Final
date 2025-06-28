@@ -3,7 +3,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-// hayuasdyfgyudsdasf
+// oie oie gente dsfafyufayuduydfys
 public class Aluno extends Usuario {
 
     private final ArrayList<Treino> treinosRecebidos;
