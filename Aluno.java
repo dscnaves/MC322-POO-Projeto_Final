@@ -1,11 +1,12 @@
 // O Aluno herda atributos e metodos da classe Usuário
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 // oie oie gente dsfafyufayuduydfys
-public class Aluno extends Usuario {
-
+public class Aluno extends Usuario implements Serializable{ // Usuario é serializavel (Serialização é o processo de transformar um objeto Java em uma sequência de bytes,)
+    private static final long serialVersionUID = 1L; // O serialVersionUID é um identificador de versão da classe. Ele serve para garantir que, ao desserializar um objeto (ler do arquivo), a classe usada hoje ainda é compatível com a classe usada quando o objeto foi salvo.
     private final ArrayList<Treino> treinosRecebidos;
     private ArrayList<TreinoExecutavel> progresso;
 
