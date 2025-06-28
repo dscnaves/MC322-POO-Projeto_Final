@@ -6,11 +6,17 @@ public class Professor extends Usuario {
     // O Professor herda atributos e metodos da classe Usuario
     private final ArrayList<Aluno> alunos;
     private final ArrayList<Treino> treinosCriados;
+    private int novosRecados;
 
     public Professor(String nome,String userName, String senha){
         super(nome, userName, senha);
         alunos = new ArrayList<>();
         treinosCriados = new ArrayList<>();
+        novosRecados = 0;
+    }
+
+    public int getNovosRecados(){
+        return novosRecados;
     }
 
     public void criarTreino(){

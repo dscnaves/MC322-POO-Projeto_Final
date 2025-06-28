@@ -1,5 +1,5 @@
-import javax.swing.*;
 import java.awt.*;
+import javax.swing.*;
 
 // Usamos JPanel para mudar entre "telas" 
 public class TelaLogin extends JPanel {

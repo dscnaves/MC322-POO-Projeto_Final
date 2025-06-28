@@ -1,32 +1,60 @@
-// TelaProfessor.java
 import java.awt.*;
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 
+// Tela mostrada quando um usuário que é um professor faz login
 public class TelaProfessor extends JPanel {
 
     public TelaProfessor(JFrame frame, Professor professor) {
-        /* 1) Layout em coluna, 8 px de espaçamento vertical */
-        setLayout(new GridLayout(0, 1, 0, 8));
+        // O layout básico da tela do professor é feito em uma coluna com vários botões e uma margem 
+        setLayout(new BorderLayout());
+        setBorder(new EmptyBorder(30, 40, 30, 40));
 
-        /* 2) Texto fixo */
-        JLabel titulo = new JLabel("Seja bem‑vindo, " + professor.getNome(),
-                                   SwingConstants.CENTER);
-        add(titulo);
+        // Configurações do centro da página
+        JPanel centro = new JPanel();
+        centro.setLayout(new BoxLayout(centro, BoxLayout.Y_AXIS));
+        add(centro, BorderLayout.CENTER);
 
-        /* 3) Botões da “página” */
-        JButton botaoNovoTreino        = new JButton("Criar novo treino");
-        JButton botaoVerTreinos        = new JButton("Visualizar treinos criados");
-        JButton botaoIndicarAluno      = new JButton("Indicar treino para um aluno");
-        JButton botaoVerAlunos         = new JButton("Visualizar alunos");
-        JButton botaoVerRecados        = new JButton("Visualizar recados");
+        // Texto fixo no topo
+        JLabel textoBoasVindas = new JLabel("Seja bem-vindo(a), " + professor.getNome() + "!");
+        JLabel textoRecados = new JLabel("Você tem " + professor.getNovosRecados() + " recados novos");
 
-        add(botaoNovoTreino);
-        add(botaoVerTreinos);
-        add(botaoIndicarAluno);
-        add(botaoVerAlunos);
-        add(botaoVerRecados);
+        // Alinhamento do texto
+        textoBoasVindas.setAlignmentX(Component.CENTER_ALIGNMENT);
+        textoRecados.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        /* 4) Ações – trocam apenas o painel dentro do mesmo JFrame */
+        // Adicionando o texto
+        centro.add(textoBoasVindas);
+        centro.add(textoRecados);
+        centro.add(Box.createVerticalStrut(20));
+        Dimension botaoSize = new Dimension(220, 35);
+
+        // Configurações dos botões
+        JPanel painelBotoes = new JPanel();
+        painelBotoes.setLayout(new BoxLayout(painelBotoes, BoxLayout.Y_AXIS));
+        painelBotoes.setAlignmentX(Component.CENTER_ALIGNMENT);
+        centro.add(painelBotoes);
+
+        // Criando botões da tela inicial do professor
+        JButton botaoNovoTreino = criarBotao("Criar novo treino", botaoSize);
+        JButton botaoVerTreinos = criarBotao("Visualizar treinos criados", botaoSize);
+        JButton botaoIndicarAluno = criarBotao("Indicar treino para um aluno", botaoSize);
+        JButton botaoVerAlunos = criarBotao("Visualizar alunos", botaoSize);
+        JButton botaoVerRecados = criarBotao("Visualizar recados", botaoSize);
+
+        // Adiciona os botões no painel
+        painelBotoes.add(botaoNovoTreino);
+        painelBotoes.add(Box.createVerticalStrut(10));
+        painelBotoes.add(botaoVerTreinos);
+        painelBotoes.add(Box.createVerticalStrut(10));
+        painelBotoes.add(botaoIndicarAluno);
+        painelBotoes.add(Box.createVerticalStrut(10));
+        painelBotoes.add(botaoVerAlunos);
+        painelBotoes.add(Box.createVerticalStrut(10));
+        painelBotoes.add(botaoVerRecados);
+
+        // Adiciona a função de cada um dos botões
+
         botaoNovoTreino.addActionListener(e -> {
             frame.setContentPane(new TelaNovoTreino(frame, professor));
             frame.revalidate();
@@ -51,6 +79,14 @@ public class TelaProfessor extends JPanel {
         botaoVerRecados.addActionListener(e -> {
             frame.setContentPane(new TelaRecados(frame, professor));
             frame.revalidate();
-        }); */
+        });*/
+    }
+
+    private static JButton criarBotao(String texto, Dimension size){
+        JButton botao = new JButton(texto);
+        botao.setMaximumSize(size);
+        botao.setPreferredSize(size);
+        botao.setAlignmentX(Component.CENTER_ALIGNMENT);
+        return botao;
     }
 }
