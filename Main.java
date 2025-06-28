@@ -1,13 +1,28 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
+
 // oi main aaaaaaaaa
 public class Main {
-
     public static void main(String[] args) {
+
+        SwingUtilities.invokeLater(() -> {
+            JFrame frame = new JFrame("Sistema");
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setSize(400, 200);
+
+            // Instânciamento do sistema (usado para cadastro e login de usuários)
+            Sistema sistema = new Sistema();
+
+            TelaLogin telaLogin = new TelaLogin(frame, sistema);
+            frame.setContentPane(telaLogin); // inicia com tela de login
+            frame.setVisible(true);
+        });
+
         // Instânciamento do sistema (usado para cadastro e login de usuários)
         Sistema sistema = new Sistema();
-
         // Variáveis de funcionamento do sistema.
         Scanner entrada = new Scanner(System.in);
         boolean continuar = true;
