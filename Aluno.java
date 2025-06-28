@@ -6,7 +6,7 @@ import java.util.Scanner;
 // oie oie gente dsfafyufayuduydfys
 public class Aluno extends Usuario {
 
-    private final ArrayList<Treino> treinosRecebidos;
+    private ArrayList<Treino> treinosRecebidos = new ArrayList<>();
     private ArrayList<TreinoExecutavel> progresso;
 
     public Aluno(String nome,String userName, String senha){
@@ -26,6 +26,14 @@ public class Aluno extends Usuario {
 
     public void visualizarHistorico(){
 
+    }
+
+    public ArrayList<Treino> getTreinosRecebidos() {
+        return treinosRecebidos;
+    }
+
+    public ArrayList<TreinoExecutavel> getProgresso() {
+        return progresso;
     }
 
     @Override  // Essa será a implementacao do metodo abstrato. Aqui implementaremos a interface especifica do Aluno
