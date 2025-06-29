@@ -34,8 +34,8 @@ public class Aluno extends Usuario { // Usuario é serializavel (Serialização 
         // Se nao estiverem vazios vms ter todas as informacoes anteriormente registradas
     }
 
-    public void registrarProgresso(TreinoExecutavel progresso){
-
+    public void registrarProgresso(TreinoExecutavel progresso, double percentual){
+        progresso.setPercentual(percentual);
     }
 
     public void comentarTreino(Treino treino, String comentario){
@@ -73,9 +73,20 @@ public class Aluno extends Usuario { // Usuario é serializavel (Serialização 
         return treinosRecebidos;
     }
 
+    public void addTreinoRecebido(Treino treino){
+        treinosRecebidos.add(treino);
+
+    }
+
     public ArrayList<TreinoExecutavel> getProgresso() {
         return progresso;
     }
+
+    public void addTreinoExe(TreinoExecutavel treinoExe){
+        progresso.add(treinoExe);
+
+    }
+    
 
     @Override  // Essa será a implementacao do metodo abstrato. Aqui implementaremos a interface especifica do Aluno
     public void mostrarMenuPrincipal(Scanner entrada){
