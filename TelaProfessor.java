@@ -67,14 +67,12 @@ public class TelaProfessor extends JPanel {
             frame.setContentPane(new TelaTreinosCriados(frame, this, professor));
             frame.revalidate();
         });
-        /* 
 
         botaoIndicarAluno.addActionListener(e -> {
-            frame.setContentPane(new TelaIndicarParaAluno(frame, professor));
+            frame.setContentPane(new TelaIndicarParaAluno(frame, this, professor));
             frame.revalidate();
         });
-        */
-
+        
         botaoVerAlunos.addActionListener(e -> {
             frame.setContentPane(new TelaVisualizarAlunos(frame, professor, this));
             frame.revalidate();
