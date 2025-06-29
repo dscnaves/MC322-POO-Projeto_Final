@@ -1,36 +1,61 @@
 import java.awt.*;
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 
 // Usamos JPanel para mudar entre "telas" 
 public class TelaAluno extends JPanel {
-    public TelaAluno(JFrame frame, TelaLogin telaLogin, Aluno aluno) { // Recebemos sempre por parametro a janela, aqui recebemos o aluno tambem
-        
-        // Configurações do layout
+    public TelaAluno(Sistema sistema, JFrame frame, TelaLogin telaLogin, Aluno aluno) { // Recebemos sempre por parametro a janela, aqui recebemos o aluno tambem
+        // gente mudei o layout para ficar padronizado com o do professor
+        // O layout básico da tela do aluno é feito em uma coluna com vários botões e uma margem 
         setLayout(new BorderLayout());
+        setBorder(new EmptyBorder(30, 40, 30, 40));
 
-        // Título de boas-vindas
-        JLabel welcomeLabel = new JLabel("Bem-vindo, " + aluno.getNome() + "!", SwingConstants.CENTER);
-        add(welcomeLabel, BorderLayout.NORTH);
+        // Configurações do centro da página
+        JPanel centro = new JPanel();
+        centro.setLayout(new BoxLayout(centro, BoxLayout.Y_AXIS));
+        add(centro, BorderLayout.CENTER);
 
-        // Painel para os botões
-        JPanel buttonPanel = new JPanel();
-        // 4 linhas, 1 coluna, hgap	Espaço horizontal entre os componentes (10 pixels), vgap	Espaço vertical entre os componentes (10 pixels)
-        buttonPanel.setLayout(new GridLayout(4, 1, 10, 10)); 
+        // Texto fixo no topo
+        JLabel textoBoasVindas = new JLabel("Seja bem-vindo(a), " + aluno.getNome() + "!");
+        JLabel textoRecados = new JLabel("Você tem " + aluno.getNovosRecados() + " recados novos");
 
-        // Botões de funcionalidade do aluno
-        JButton visualizarTreinosButton = new JButton("Visualizar Treinos Recebidos");
-        JButton registrarProgressoButton = new JButton("Registrar Progresso");
-        JButton visualizarHistoricoButton = new JButton("Visualizar Histórico");
-        JButton sairButton = new JButton("Sair");
+        // Alinhamento do texto
+        textoBoasVindas.setAlignmentX(Component.CENTER_ALIGNMENT);
+        textoRecados.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        // Adiciona os botões ao painel de botões
-        buttonPanel.add(visualizarTreinosButton);
-        buttonPanel.add(registrarProgressoButton);
-        buttonPanel.add(visualizarHistoricoButton);
-        buttonPanel.add(sairButton);
+        // Adicionando o texto
+        centro.add(textoBoasVindas);
+        centro.add(textoRecados);
+        centro.add(Box.createVerticalStrut(20));
+        Dimension botaoSize = new Dimension(400, 50);
 
-        // Adiciona o painel de botões ao centro do layout principal
-        add(buttonPanel, BorderLayout.CENTER);
+        // Configurações dos botões
+        JPanel painelBotoes = new JPanel();
+        painelBotoes.setLayout(new BoxLayout(painelBotoes, BoxLayout.Y_AXIS));
+        painelBotoes.setAlignmentX(Component.CENTER_ALIGNMENT);
+        centro.add(painelBotoes);
+
+        // Criando botões da tela inicial do professor
+        JButton visualizarTreinosButton = criarBotao("Visualizar treinos", botaoSize);
+        JButton registrarProgressoButton = criarBotao("Registrar progresso", botaoSize);
+        JButton visualizarHistoricoButton = criarBotao("Visualizar histórico", botaoSize);
+        JButton adicionarProfButton =  criarBotao("Adicionar Professor", botaoSize);
+        JButton sairButton = criarBotao("Sair", botaoSize);
+   
+        // Adiciona os botões no painel
+        painelBotoes.add(visualizarTreinosButton);
+        painelBotoes.add(Box.createVerticalStrut(10));
+        painelBotoes.add(registrarProgressoButton);
+        painelBotoes.add(Box.createVerticalStrut(10));
+        painelBotoes.add(visualizarHistoricoButton);
+        painelBotoes.add(Box.createVerticalStrut(10));
+        painelBotoes.add(adicionarProfButton);
+        painelBotoes.add(Box.createVerticalStrut(10));
+        painelBotoes.add(sairButton);
+        painelBotoes.add(Box.createVerticalStrut(10));
+
+
+
 
         // Ações dos botões
         visualizarTreinosButton.addActionListener(e -> {
@@ -51,11 +76,26 @@ public class TelaAluno extends JPanel {
             frame.repaint();
         });
 
+        adicionarProfButton.addActionListener(e -> {
+            frame.setContentPane(new TelaAdicionarProf(sistema, frame, this, aluno));
+            frame.revalidate();
+            frame.repaint();
+        });
+
         // Ação do botão de sair ao ser clicado
         sairButton.addActionListener(e -> {
             telaLogin.limparCampos();
             frame.setContentPane(telaLogin);
             frame.revalidate();
         });
+    }
+
+    //Cria um botão na formatação desejada
+    private static JButton criarBotao(String texto, Dimension size){
+        JButton botao = new JButton(texto);
+        botao.setMaximumSize(size);
+        botao.setPreferredSize(size);
+        botao.setAlignmentX(Component.CENTER_ALIGNMENT);
+        return botao;
     }
 }

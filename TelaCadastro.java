@@ -3,13 +3,18 @@ import java.awt.*;
 
 // Usamos JPanel para mudar entre "telas" 
 public class TelaCadastro extends JPanel {
-    public TelaCadastro(JFrame frame, Sistema sistema) {
+    private JTextField campoNome;
+    private JTextField campoUserName;
+    private JPasswordField campoSenha;
+
+    public TelaCadastro(JFrame frame, Sistema sistema, TelaLogin telaLogin) {
         setLayout(new GridLayout(0,1)); //
 
-        JTextField campoNome = new JTextField();
-        JTextField campoUserName = new JTextField();
-        JPasswordField campoSenha = new JPasswordField();
+        campoNome = new JTextField();
+        campoUserName = new JTextField();
+        campoSenha = new JPasswordField();
         JButton botaoConfirmar = new JButton("Cadastrar");
+        JButton botaoVoltarLogin = new JButton("Voltar");
 
         String[] opcoes = { "Aluno", "Professor" }; // As opcoes da caixa de selecao
         JComboBox<String> caixaSelecao = new JComboBox<>(opcoes); // caixa de selecao (dropdown)
@@ -24,6 +29,8 @@ public class TelaCadastro extends JPanel {
         add(campoSenha);
         add(new JLabel("Realizar cadastro"));
         add(botaoConfirmar);
+        add(new JLabel("Voltar para Login"));
+        add(botaoVoltarLogin);
 
         // Fica escutando/esperando o click no botao para executar
         botaoConfirmar.addActionListener(e -> {
@@ -39,11 +46,25 @@ public class TelaCadastro extends JPanel {
                 sistema.cadastro(nome, userName, senha, tipo); // Só executará a prox linha se for um cadastro valido
                 JOptionPane.showMessageDialog(frame, "Usuário cadastrado com sucesso!"); // exibimos mensagem de sucesso
                 frame.setContentPane(new TelaLogin(frame, sistema)); // Mudamos para a tela de Login
+                limparCampos();
                 frame.revalidate();
             } catch (CadastroInvalidoException erro) {
+                limparCampos();
                 JOptionPane.showMessageDialog(frame, erro.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE); // exibimos uma mensagem de erro
             }
         });
 
+        botaoVoltarLogin.addActionListener(e -> {
+            telaLogin.limparCampos();
+            frame.setContentPane(telaLogin);
+            frame.revalidate();
+        });
+
+    }
+
+    public void limparCampos(){
+        campoNome.setText("");
+        campoUserName.setText("");
+        campoSenha.setText("");
     }
 }

@@ -1,4 +1,6 @@
-public abstract  class Exercicio {
+import java.io.Serializable;
+
+public abstract class Exercicio{
 
     private final String nome;
     private final int numSeries;
