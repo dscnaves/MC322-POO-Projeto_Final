@@ -97,89 +97,228 @@ Para executar o programa siga os seguintes passos:
 
 ## Diagrama de Classes (UML)
 
-```mermaid
+mermaid
+---
+config:
+  class:
+    hideEmptyMembersBox: true
+---
 classDiagram
+direction LR
+    class CadastroInvalidoException {
+	    
+    }
     class Usuario {
-        - String nome
-        - String email
-        - String senha
-        + String getNome()
-        + String getEmail()
-        + String getSenha()
-        + void mostrarMenuPrincipal()
+	    - nome : String
+	    - userName : String
+	    - senha : String
+	    - mensagens : ArrayList
+	    + getNome() : String
+	    + getUserName() : String
+	    + getSenha() : String
+	    + adicionarMensagem(comentario) : void
+	    + getMensagens() : ArrayList
     }
-
-    class Professor {
-        - List~Aluno~ alunos
-        - List~Treino~ treinosCriados
-        + void criarTreino()
-        + void atribuirTreino(Aluno, Treino)
-        + void verComentarios()
-        + void responderComentario()
-        + void mostrarMenuPrincipal()
-    }
-
-    class Aluno {
-        - List~Treino~ treinosRecebidos
-        - List~ProgressoTreino~ progresso
-        + void registrarProgresso(ProgressoTreino)
-        + void comentarTreino(Treino, String)
-        + void visualizarHistorico()
-        + void mostrarMenuPrincipal()
-    }
-
-    class Treino {
-        - String nome
-        - List~Exercicio~ exercicios
-        - EnumDificuldade dificuldade
-        + void adicionarExercicio(Exercicio)
-        + String toString()
-    }
-
-    class Exercicio {
-        - String nome
-        - int repeticoes
-        - int series
-        - int duracaoSegundos
-    }
-
-    class ProgressoTreino {
-        - Treino treino
-        - boolean concluido
-        - double percentualConcluido
-        - String observacoes
-        + Treino getTreino()
-    }
-
-    class Comentario {
-        - Usuario autor
-        - String texto
-        - Date data
-    }
-
     class Sistema {
-        + static List~Usuario~ usuarios
-        + void login(String, String)
-        + void salvarDados()
-        + void carregarDados()
+        - ARQUIVOS_USUARIOS : String
+        - professores : ArrayList<Professor>
+        - alunos : ArrayList<Aluno>
+        - usuarios : ArrayList<Usuario>
+	    + cadastro(nome, userName, senha, caso) : void
+	    + login(userName, senha) : Usuario
+	    + salvarDados() : void
+	    + carregarDados() : void
+	    + getArrayProfessores() : ArrayList
+	    + getArrayAlunos() : ArrayList
+    }
+    class Comentario {
+        - autor : Usuario
+        - texto : String
+        - data : Date
+	    + getAutor() : Usuario
+	    + getTexto() : String
+	    + getData() : Date
+	    + toString() : String
+    }
+    class Exercicio {
+	    - nome : String
+	    - numSeries : int
+	    - intervalo : Tempo
+	    + getNome() : String
+	    + getNumSeries() : int
+	    + getIntervalo() : Tempo
+    }
+    class ExercicioDuracao {
+	    - duracao : Tempo
+	    + getDuracao() : Tempo
+	    + descreverExercicio() : String
+    }
+    class Professor {
+	    - alunos : ArrayList
+	    - treinosCriados : ArrayList
+	    - novosRecados : int
+	    - readObject(in) : void
+	    + criarTreino() : void
+	    + adicionarExercicio() : void
+	    + addAluno(aluno) : void
+	    + adicionarTreino(treino) : void
+	    + getAlunos() : ArrayList
+	    + getNovosRecados() : int
+	    + incrementarNovosRecados() : void
+	    + zerarNovosRecados() : void
+	    + getTreinosCriados() : ArrayList
+	    + atribuirTreino(aluno, treino) : void
+	    + verComentarios() : void
+	    + responderComentario() : void
+	    + mostrarMenuPrincipal(entrada) : void
+    }
+    class Aluno {
+	    - professores : ArrayList
+	    - treinosRecebidos : ArrayList
+	    - progresso : ArrayList
+	    - novosRecados : int
+	    - readObject(in) : void
+	    + registrarProgresso(progresso) : void
+	    + comentarTreino(treino, comentario) : void
+	    + visualizarHistorico() : void
+	    + getNovosRecados() : int
+	    + incrementarNovosRecados() : void
+	    + zerarNovosRecados() : void
+	    + addProf(prof) : void
+	    + getProfessores() : ArrayList
+	    + getTreinosRecebidos() : ArrayList
+	    + getProgresso() : ArrayList
+	    + mostrarMenuPrincipal(entrada) : void
     }
 
-    class EnumDificuldade {
-        FACIL
-        MEDIO
-        DIFICIL
+    class ExercicioRepeticoes {
+	    - repeticoes : int
+	    + getRepeticoes() : int
+	    + descreverExercicio() : String
     }
 
-    Usuario <|-- Professor
-    Usuario <|-- Aluno
-    Professor --> Treino : creates
-    Professor --> Aluno : teaches
-    Aluno --> Treino : assigned
-    Aluno --> ProgressoTreino : has progress
-    ProgressoTreino --> Treino : refers to
-    Treino --> Exercicio : composed of
-    Treino --> Comentario : has
-    Comentario --> Usuario : author
-    Treino --> EnumDificuldade : difficulty
+    class TreinoExecutavel {
+	    - treino : Treino
+	    - profResponsavel : Professor
+	    - percentualConcluido : double
+	    - concluido : boolean
+	    - observacoes : ArrayList
+	    - readObject(in) : void
+	    + getTreino() : Treino
+	    + getProfResponsavel() : Professor
+	    + getPercentual() : double
+	    + setPercentual(percentual) : void
+	    + setConcluido() : void
+    }
+    
+    class Treino {
+	    - nome : String
+	    - dificuldade : EnumDificuldade
+	    - exercicios : ArrayList
+	    - readObject(in) : void
+	    + getNome() : String
+	    + getDificuldade() : EnumDificuldade
+	    + getArrayExercicios() : ArrayList
+	    + adicionarExercicio(exercicio) : void
+	    + toString() : String
+    }
+
+    class Tempo {
+	    - duracao : int
+	    - medida : EnumTempo
+	    + getTempo() : int
+	    + getMedida() : EnumTempo
+    }
+
+    class Main {
+	     
+    }
+
+    class TelaLogin {
+	    - campoUserName : JTextField
+	    - campoSenha : JPasswordField
+	    + limparCampos() : void
+    }
+
+    class TelaAdicionarProf {
+	     
+    }
+    
+    class TelaNovoTreino {
+	     
+    }
+
+    class TelaIndicarParaAluno {
+
+    }
+
+    class TelaProfessor {
+	     
+    }
+    
+    class TelaEscolherTipo {
+	     
+    }
+    class TelaCriadorTreino {
+	     
+    }
+    class TelaCriadorExRepeticoes {
+	     
+    }
+    class TelaCriadorExDuracao {
+	    + criarCampo(dimensao) : JTextField
+	    + criarCaixaSelecao(dimensao) : JComboBox
+    }
+    
+    class TelaCadastro {
+	    - campoNome : JTextField
+	    - campoUserName : JTextField
+	    - campoSenha : JPasswordField
+	    + limparCampos() : void
+    }
+
+    class TelaAluno {
+	     
+    }
+
+    class TelaVisualizarTreinos {
+	     
+    }
+
+    class TelaVisualizarHistorico {
+	     
+    }
+
+    class TelaRegistrarProgresso {
+	     
+    }
+
+    class TelaTreinosCriados {
+	     
+    }
+
+    class TelaRecados {
+	     
+    }
+
+    class TelaVisualizarAlunos {
+	     
+    }
+
+
+    ExercicioDuracao --> Tempo
+    Professor --> Aluno
+    Professor --> Treino
+    Aluno --> Professor
+    Aluno --> Treino
+    Aluno --> TreinoExecutavel
+    Treino --> Exercicio
+    TreinoExecutavel --> Treino
+    TreinoExecutavel --> Professor
+    ExercicioRepeticoes --> Exercicio
+    ExercicioDuracao --> Exercicio
+    Aluno <|-- Usuario
+    Professor <|-- Usuário
+
 ```
 
