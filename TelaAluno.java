@@ -54,9 +54,6 @@ public class TelaAluno extends JPanel {
         painelBotoes.add(sairButton);
         painelBotoes.add(Box.createVerticalStrut(10));
 
-
-
-
         // Ações dos botões
         visualizarTreinosButton.addActionListener(e -> {
             frame.setContentPane(new TelaVisualizarTreinos(frame, this, aluno));

@@ -4,7 +4,7 @@ import javax.swing.border.EmptyBorder;
 
 public class TelaNovoTreino extends JPanel {
 
-    public TelaNovoTreino(JFrame frame, TelaProfessor telaProfessor, Professor professor) {
+    public TelaNovoTreino(Sistema sistema, JFrame frame, TelaProfessor telaProfessor, Professor professor) {
 
         // O layout básico da tela de criação de treino é um título, com dois campos de preenchimento e dois botões
         setLayout(new BorderLayout());
@@ -95,7 +95,7 @@ public class TelaNovoTreino extends JPanel {
                 };
                 
                 // Vai para a tela criadora de treinos
-                frame.setContentPane(new TelaCriadorTreino(frame, telaProfessor, novoTreino, professor));
+                frame.setContentPane(new TelaCriadorTreino(sistema, frame, telaProfessor, novoTreino, professor));
                 frame.revalidate();
         });
 

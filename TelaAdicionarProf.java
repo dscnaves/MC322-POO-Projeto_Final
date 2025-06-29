@@ -34,7 +34,7 @@ public class TelaAdicionarProf extends JPanel{
                     professoresCadastrados.addActionListener(e -> {
                         aluno.addProf(prof);
                         prof.addAluno(aluno);
-                        sistema.salvarDados(); 
+                        sistema.salvarDados(); // Estamos guardando no arquivo .dat as alteracoes, ou seja, guardamos o prof que o aluno adicionou no array de profs e salvamos esse aluno que esta no array de alunos do prof
                         JOptionPane.showMessageDialog(frame, "Professor " + prof.getNome() + " adicionado com sucesso!");
 
                         // Atualiza a tela para esconder o botão depois da adição

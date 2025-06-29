@@ -1,7 +1,7 @@
 public class ExercicioDuracao extends Exercicio {
     
     // São exercícios baseados em tempo de realização (ex: prancha, corrida)
-    private final Tempo duracao;
+    private Tempo duracao;
 
     // Construtor
     public ExercicioDuracao(String nome, int series, Tempo intervalo, Tempo duracao){

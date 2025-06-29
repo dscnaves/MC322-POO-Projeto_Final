@@ -1,7 +1,7 @@
 public class ExercicioRepeticoes extends Exercicio {
 
     // São exercicios baseados em repetições (ex: agachamentos, abdominais)
-    private final int repeticoes;
+    private int repeticoes;
 
     // Construtor
     public ExercicioRepeticoes(String nome, int series, Tempo intervalo, int repeticoes){

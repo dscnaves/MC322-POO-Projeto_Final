@@ -22,12 +22,15 @@ public class Professor extends Usuario {
         novosRecados = 0;
     }
 
-    // medoto que é chamado na desserializacao automaticamente
+    // metodo que sobrescreve a desserialização padrão. Ele é chamado pelo metodo carregarDados da classe sistema.
     private void readObject(java.io.ObjectInputStream in) throws IOException, ClassNotFoundException {
-        in.defaultReadObject(); // desserializa os dados salvos
+        in.defaultReadObject(); // desserializa os dados salvos, Ele atribui automaticamente aos campos serializáveis os valores salvos no arquivo 
+        // Após a desserialização, se os campos vieram como null (pois podemos guardar eles vazios no arquivo), criamos um novo ArrayList<> para evitar NullPointerException no resto do código.
         if (alunos == null) alunos = new ArrayList<>();
         if (treinosCriados == null) treinosCriados = new ArrayList<>();
+        // Se nao estiverem vazios vms ter todas as informacoes anteriormente registradas
     }
+    
     // Cria um novo treino e o adiciona à lista de treinos criados
     public void criarTreino(){
 

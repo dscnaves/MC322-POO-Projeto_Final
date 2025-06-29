@@ -3,6 +3,6 @@ import javax.swing.JPanel;
 
 public class TelaCriadorExRepeticoes extends JPanel {
     
-    public TelaCriadorExRepeticoes(JFrame frame, TelaProfessor telaProfessor, Treino treino, Professor professor){
+    public TelaCriadorExRepeticoes(Sistema sistema, JFrame frame, TelaProfessor telaProfessor, Treino treino, Professor professor){
     }
 }

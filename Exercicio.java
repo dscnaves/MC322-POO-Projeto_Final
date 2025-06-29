@@ -1,10 +1,10 @@
 import java.io.Serializable;
 
-public abstract class Exercicio{
+public abstract class Exercicio implements Serializable{
 
-    private final String nome;
-    private final int numSeries;
-    private final Tempo intervalo;
+    private String nome;
+    private int numSeries;
+    private Tempo intervalo;
 
     // Construtor
     public Exercicio(String nome, int numSeries, Tempo intervalo) {
