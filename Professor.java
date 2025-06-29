@@ -21,16 +21,10 @@ public class Professor extends Usuario implements Serializable {
         novosRecados = 0;
     }
 
-    // Cria um novo treino e o adiciona à lista de treinos criados
-    public void criarTreino(){
-
+    // Adiciona um novo treino aos treinos criados
+    public void adicionarTreino(Treino treino){
+        treinosCriados.add(treino);
     }
-
-    // Adiciona um novo exercício ao treino que está sendo criado
-    public void adicionarExercicio(){
-        
-    }
-
 
 
 

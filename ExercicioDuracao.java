@@ -13,4 +13,12 @@ public class ExercicioDuracao extends Exercicio {
     public Tempo getDuracao(){
         return duracao;
     }
+
+    // Obtém uma string que indica todas as características do exercício
+    @Override
+    public String descreverExercicio(){
+        return (this.getNome() + "\n" +
+                "Número de séries: " + this.getNumSeries() + "\n" +
+                "Tempo em cada série: " + duracao.getTempo() + " " + duracao.getMedida() + "\n");
+    }
 }

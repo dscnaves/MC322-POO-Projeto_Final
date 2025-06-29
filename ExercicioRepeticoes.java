@@ -13,4 +13,12 @@ public class ExercicioRepeticoes extends Exercicio {
     public int getRepeticoes(){
         return repeticoes;
     }
+
+    // Obtém uma string que indica todas as características do exercício
+    @Override
+    public String descreverExercicio(){
+        return (this.getNome() + "\n" +
+                "Número de séries: " + this.getNumSeries() + "\n" +
+                "Número de repetições: " + repeticoes + "\n");
+    }
 }
