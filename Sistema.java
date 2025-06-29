@@ -34,7 +34,6 @@ public class Sistema {
             usuarios.add(new Professor(nome, userName, senha)); // Se user e senha validos cadastramos como Professor (caso 2)
 
         salvarDados(); // Vamos salvar no aquivo.dat esse novo user
-        System.out.println("Usuário '" + userName + "' cadastrado com sucesso!\n");
     }
 
     public Usuario login(String userName, String senha) throws CadastroInvalidoException {
@@ -42,7 +41,6 @@ public class Sistema {
             if (usuarios.get(i).getUserName().equals(userName)) {
                 // User encontrado
                 if (usuarios.get(i).getSenha().equals(senha)) { // Senha é valida
-                    System.out.println("Login realizado com sucesso.\n");
                     return usuarios.get(i); // Retorno o usuario para conseguir usar ele na main
                 } else { // Senha invalida
                     throw new CadastroInvalidoException("Senha incorreta para o usuário '" + userName + "' ");

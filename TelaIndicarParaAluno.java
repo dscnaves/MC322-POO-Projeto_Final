@@ -113,12 +113,12 @@ public class TelaIndicarParaAluno extends JPanel {
 
             TreinoExecutavel treinoIndicado = new TreinoExecutavel(treinoEscolhido, professor);
 
-            alunoEscolhido.
+            //alunoEscolhido.
                 
-            // Vai para a tela inicial do professor
-            frame.setContentPane(telaProfessor);
-            frame.revalidate();
-            frame.repaint();
+            // // Vai para a tela inicial do professor
+            // frame.setContentPane(telaProfessor);
+            // frame.revalidate();
+            // frame.repaint();
         });
     }
 }
