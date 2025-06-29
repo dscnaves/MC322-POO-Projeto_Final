@@ -70,7 +70,7 @@ public class TelaProfessor extends JPanel {
         });
 
         botaoIndicarAluno.addActionListener(e -> {
-            frame.setContentPane(new TelaIndicarParaAluno(frame, this, professor));
+            frame.setContentPane(new TelaIndicarParaAluno(sistema, frame, this, professor));
             frame.revalidate();
         });
         

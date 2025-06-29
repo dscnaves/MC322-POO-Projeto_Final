@@ -5,7 +5,7 @@ import javax.swing.border.EmptyBorder;
 
 public class TelaIndicarParaAluno extends JPanel {
     
-    public TelaIndicarParaAluno(JFrame frame, TelaProfessor telaProfessor, Professor professor){
+    public TelaIndicarParaAluno(Sistema sistema, JFrame frame, TelaProfessor telaProfessor, Professor professor){
     
         // O layout básico da tela de criação de indicação de treinos é uma caixa de seleção de alunos e uma caixa de selção de treinos
         setLayout(new BorderLayout());
@@ -112,13 +112,22 @@ public class TelaIndicarParaAluno extends JPanel {
             Treino treinoEscolhido = (Treino) selecaoTreino.getSelectedItem();
 
             TreinoExecutavel treinoIndicado = new TreinoExecutavel(treinoEscolhido, professor);
+            alunoEscolhido.addTreinoRecebido(treinoEscolhido);
+            alunoEscolhido.addTreinoExe(treinoIndicado);
 
+            sistema.salvarDados(); // Estamos guardando no arquivo .dat as alteracoes, ou seja, guardamos o prof que o aluno adicionou no array de profs e salvamos esse aluno que esta no array de alunos do prof
             //alunoEscolhido.
-                
-            // // Vai para a tela inicial do professor
-            // frame.setContentPane(telaProfessor);
-            // frame.revalidate();
-            // frame.repaint();
+            JOptionPane.showMessageDialog(frame, "Indicação de treino realizada com sucesso.");
+            // Vai para a tela inicial do professor
+            frame.setContentPane(telaProfessor);
+            frame.revalidate();
+            frame.repaint();
+        });
+
+        // Volta para a página inicial do professor
+        botaoSair.addActionListener(e -> {
+            frame.setContentPane(telaProfessor);
+            frame.revalidate();
         });
     }
 }

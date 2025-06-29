@@ -15,8 +15,8 @@ public class TelaRegistrarProgresso extends JPanel {
 
         // Selecionar o treino
         mainPanel.add(new JLabel("Selecione o treino:"));
-        ArrayList<Treino> treinos = aluno.getTreinosRecebidos();
-        JComboBox<Treino> treinoComboBox = new JComboBox<>(treinos.toArray(new Treino[0]));
+        ArrayList<TreinoExecutavel> treinos = aluno.getProgresso();
+        JComboBox<TreinoExecutavel> treinoComboBox = new JComboBox<>(treinos.toArray(new TreinoExecutavel[0]));
         mainPanel.add(treinoComboBox);
 
         // Campo para inserir o progresso (ex: percentual)
@@ -28,15 +28,29 @@ public class TelaRegistrarProgresso extends JPanel {
         progressoSlider.setPaintLabels(true);
         mainPanel.add(progressoSlider);
 
+        // Atualiza o valor da barra ao trocar de treino no combo
+        treinoComboBox.addActionListener(e -> {
+            TreinoExecutavel selecionado = (TreinoExecutavel) treinoComboBox.getSelectedItem();
+            if (selecionado != null) {
+                progressoSlider.setValue((int) selecionado.getPercentual());
+            }
+        });
+
+        // Inicializa com o valor do primeiro treino (se houver)
+        if (!treinos.isEmpty()) {
+            progressoSlider.setValue((int) treinos.get(0).getPercentual());
+        }
+
         // Botão para registrar
         JButton registrarButton = new JButton("Registrar Progresso");
         registrarButton.addActionListener(e -> {
-            Treino treinoSelecionado = (Treino) treinoComboBox.getSelectedItem();
+            TreinoExecutavel treinoSelecionado = (TreinoExecutavel) treinoComboBox.getSelectedItem();
             if (treinoSelecionado != null) {
-                int percentual = progressoSlider.getValue();
-                // Aqui, você chamaria um método no objeto Aluno para registrar o progresso
-                // Ex: aluno.registrarProgresso(treinoSelecionado, percentual);
-                JOptionPane.showMessageDialog(frame, "Progresso de " + percentual + "% registrado para o treino: " + treinoSelecionado.getNome());
+                double percentual = progressoSlider.getValue();
+                aluno.registrarProgresso(treinoSelecionado, percentual);
+
+                JOptionPane.showMessageDialog(frame, "Progresso de " + percentual + "% registrado para o treino: " + treinoSelecionado.getTreino().getNome());
+                sistema.salvarDados();
                 // Você pode voltar para a tela anterior após o registro, se quiser
                 frame.setContentPane(telaAluno);
                 frame.revalidate();
