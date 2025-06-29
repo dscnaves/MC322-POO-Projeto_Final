@@ -53,14 +53,16 @@ public class TelaAluno extends JPanel {
         // Ações dos botões
         // Botão para visualizar treinos recebidos
         visualizarTreinosButton.addActionListener(e -> {
-            // A ser implementado em outra tela
-            JOptionPane.showMessageDialog(frame, "Funcionalidade a ser implementada.");
+            frame.setContentPane(new TelaVisualizarTreinos(frame, this, aluno));
+            frame.revalidate();
+            frame.repaint();
         });
 
         // Botão para registrar progresso
         registrarProgressoButton.addActionListener(e -> {
-            // A ser implementado em outra tela
-            JOptionPane.showMessageDialog(frame, "Funcionalidade a ser implementada.");
+            frame.setContentPane(new TelaRegistrarProgresso(sistema, frame, this, aluno));
+            frame.revalidate();
+            frame.repaint();
         });
 
         // Botão para visualizar histórico de treinos
