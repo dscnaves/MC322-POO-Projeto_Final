@@ -56,13 +56,13 @@ public class TelaVisualizarTreinos extends JPanel {
             }
         }
 
-        // Botão para voltar à tela do aluno
-        JButton backButton = new JButton("Voltar");
-        backButton.addActionListener(e -> {
-            frame.setContentPane(telaAluno);
-            frame.revalidate();
-            frame.repaint();
-        });
-        add(backButton, BorderLayout.SOUTH);
+        // // Botão para voltar à tela do aluno
+        // JButton backButton = new JButton("Voltar");
+        // backButton.addActionListener(e -> {
+        //     frame.setContentPane(telaAluno);
+        //     frame.revalidate();
+        //     frame.repaint();
+        // });
+        // add(backButton, BorderLayout.SOUTH);
     }
 }

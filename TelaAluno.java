@@ -70,8 +70,9 @@ public class TelaAluno extends JPanel {
         });
 
         adicionarProfButton.addActionListener(e -> {
-            // A ser implementado em outra tela
-            JOptionPane.showMessageDialog(frame, "Funcionalidade a ser implementada.");
+            frame.setContentPane(new TelaAdicionarProf(sistema, frame, this, aluno));
+            frame.revalidate();
+            frame.repaint();
         });
         
         enviarRecadoButton.addActionListener(e -> {
