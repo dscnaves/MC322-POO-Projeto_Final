@@ -55,4 +55,10 @@ public class TreinoExecutavel implements Serializable{
     public void setConcluido(){
         concluido = !concluido;
     }
+
+    // Se vc usar um JComboBox vc precisa sobrescerver o metodo toString para nao aparecer algo assim como o nome do campo TreinoExecutavel@2f4d3709 
+    @Override
+    public String toString() {
+        return treino.getNome() + " (" + percentualConcluido + "%)";
+    }
 }

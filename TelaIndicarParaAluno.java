@@ -4,11 +4,9 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 public class TelaIndicarParaAluno extends JPanel {
-
-    private JFrame frame;
-
-    public TelaIndicarParaAluno(JFrame frame, TelaProfessor telaProfessor, Professor professor){
-        frame = this.frame;
+    
+    public TelaIndicarParaAluno(Sistema sistema, JFrame frame, TelaProfessor telaProfessor, Professor professor){
+   
         // O layout básico da tela de criação de indicação de treinos é uma caixa de seleção de alunos e uma caixa de selção de treinos
         setLayout(new BorderLayout());
         setBorder(new EmptyBorder(30, 40, 30, 40));
@@ -114,14 +112,23 @@ public class TelaIndicarParaAluno extends JPanel {
             Treino treinoEscolhido = (Treino) selecaoTreino.getSelectedItem();
 
             TreinoExecutavel treinoIndicado = new TreinoExecutavel(treinoEscolhido, professor);
+            alunoEscolhido.addTreinoRecebido(treinoEscolhido);
+            alunoEscolhido.addTreinoExe(treinoIndicado);
 
-            alunoEscolhido.
-                
+            sistema.salvarDados(); // Estamos guardando no arquivo .dat as alteracoes, ou seja, guardamos o prof que o aluno adicionou no array de profs e salvamos esse aluno que esta no array de alunos do prof
+            //alunoEscolhido.
+            JOptionPane.showMessageDialog(frame, "Indicação de treino realizada com sucesso.");
             // Vai para a tela inicial do professor
             // Dani: Não sei pq mas só consegui resolver o problema desse arquivo colocando this. na frente do frame
             frame.setContentPane(telaProfessor);
             frame.revalidate();
             frame.repaint();
+        });
+
+        // Volta para a página inicial do professor
+        botaoSair.addActionListener(e -> {
+            frame.setContentPane(telaProfessor);
+            frame.revalidate();
         });
     }
 }

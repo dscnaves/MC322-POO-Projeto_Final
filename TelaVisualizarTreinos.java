@@ -4,8 +4,6 @@ import javax.swing.*;
 
 public class TelaVisualizarTreinos extends JPanel {
     public TelaVisualizarTreinos(JFrame frame, TelaAluno telaAluno, Aluno aluno) {
-        setLayout(new BorderLayout(10, 10)); // Layout para organizar os componentes
-        setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20)); // Adiciona uma margem
 
         JLabel tituloLabel = new JLabel("Meus Treinos Recebidos", SwingConstants.CENTER);
         tituloLabel.setFont(new Font("Arial", Font.BOLD, 18));
