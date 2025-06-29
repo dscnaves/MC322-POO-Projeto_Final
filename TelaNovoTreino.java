@@ -77,6 +77,7 @@ public class TelaNovoTreino extends JPanel {
 
         // Adiciona a função de cada um dos botões
 
+        // Cria um novo treino e vai para a página de criação de treinos
         botaoProsseguir.addActionListener(e -> {
 
                 // Coleta os dados de preenchimento
@@ -98,6 +99,7 @@ public class TelaNovoTreino extends JPanel {
                 frame.revalidate();
         });
 
+        // Volta para a página inicial do professor
         botaoSair.addActionListener(e -> {
             frame.setContentPane(telaProfessor);
             frame.revalidate();

@@ -1,4 +1,4 @@
-public class Exercicio {
+public abstract  class Exercicio {
 
     private final String nome;
     private final int numSeries;
@@ -25,4 +25,7 @@ public class Exercicio {
     public Tempo getIntervalo(){
         return intervalo;
     }
+
+    // Obtém uma string que indica todas as características do exercício
+    public abstract String descreverExercicio();
 }
