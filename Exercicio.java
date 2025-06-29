@@ -1,8 +1,6 @@
 import java.io.Serializable;
 
-// Essa classe precisa ser serializavel para podermos guardar as informacoes dos alunos e professores
-// Classes que herdam dessa não precisam implementar serializable pois ja herdam. Enum e Exceptions tambem nao precisam
-public class Exercicio implements Serializable {
+public abstract class Exercicio{
 
     private final String nome;
     private final int numSeries;
@@ -29,4 +27,7 @@ public class Exercicio implements Serializable {
     public Tempo getIntervalo(){
         return intervalo;
     }
+
+    // Obtém uma string que indica todas as características do exercício
+    public abstract String descreverExercicio();
 }

@@ -22,76 +22,87 @@ public class TelaNovoTreino extends JPanel {
         centro.add(titulo);
         centro.add(Box.createVerticalStrut(20));
 
-        // Campos de preenchimento
+        // Painel principal
         JPanel painelCampos = new JPanel();
         painelCampos.setLayout(new BoxLayout(painelCampos, BoxLayout.Y_AXIS));
         painelCampos.setAlignmentX(Component.CENTER_ALIGNMENT);
         centro.add(painelCampos);
 
-        // Preencher título
-        JTextField campoTitulo = new JTextField();
-        add(new JLabel("Digite o título do treino: "));
-        add(campoTitulo);
+        // Dimensões padronizadas
+        Dimension camposSize = new Dimension(400, 35);
+        Dimension botaoSize = new Dimension(400, 50);
 
-        // Selecionar dificuldade
+        // Criação do campo para escolher o título do treino
+        JTextField campoTitulo = new JTextField();
+        campoTitulo.setMaximumSize(camposSize);
+        campoTitulo.setPreferredSize(camposSize);
+        campoTitulo.setAlignmentX(Component.LEFT_ALIGNMENT);
+
+        // Criação do campo para escolher a dificuldade do treino
         String[] opcoes = { "Fácil", "Médio", "Difícil"};
         JComboBox<String> caixaSelecao = new JComboBox<>(opcoes);
+        caixaSelecao.setMaximumSize(camposSize);
+        caixaSelecao.setPreferredSize(camposSize);
+        caixaSelecao.setAlignmentX(Component.LEFT_ALIGNMENT);
 
-        add(new JLabel("Selecione a dificuldade do treino: "));
-        add(caixaSelecao);
+        // Criação do botão "Prosseguir"
+        JButton botaoProsseguir = new JButton("Prosseguir");
+        botaoProsseguir.setMaximumSize(botaoSize);
+        botaoProsseguir.setPreferredSize(botaoSize);
+        botaoProsseguir.setAlignmentX(Component.LEFT_ALIGNMENT);
 
-        // Configurações dos botões
-        JPanel painelBotoes = new JPanel();
-        Dimension botaoSize = new Dimension(400, 50);
-        painelBotoes.setLayout(new BoxLayout(painelBotoes, BoxLayout.Y_AXIS));
-        painelBotoes.setAlignmentX(Component.CENTER_ALIGNMENT);
-        centro.add(painelBotoes);
+        // Adiciona componentes ao painel
+        painelCampos.add(new JLabel("Digite o título do treino: "));
+        painelCampos.add(Box.createVerticalStrut(5));
+        painelCampos.add(campoTitulo);
+        painelCampos.add(Box.createVerticalStrut(10));
+        painelCampos.add(new JLabel("Selecione a dificuldade do treino: "));
+        painelCampos.add(Box.createVerticalStrut(5));
+        painelCampos.add(caixaSelecao);
+        painelCampos.add(Box.createVerticalStrut(20));
+        painelCampos.add(botaoProsseguir);
 
-        // Criando botões 
-        JButton botaoProsseguir = criarBotao("Prosseguir", botaoSize);
-        JButton botaoSair = criarBotao("Sair sem salvar", botaoSize);
+        // Criação do painel para o botão "sair sem salvar"
+        JPanel painelSair = new JPanel();
+        painelSair.setLayout(new BoxLayout(painelSair, BoxLayout.Y_AXIS));
+        painelSair.setAlignmentX(Component.CENTER_ALIGNMENT);
+        add(painelSair, BorderLayout.SOUTH);
 
-        // Adiciona os botões no painel
-        painelBotoes.add(botaoProsseguir);
-        painelBotoes.add(Box.createVerticalStrut(10));
-        painelBotoes.add(botaoSair);
+        // Criação do botão "sair sem salvar"
+        JButton botaoSair = new JButton("Sair sem salvar");
+        botaoSair.setMaximumSize(botaoSize);
+        botaoSair.setPreferredSize(botaoSize);
+        botaoSair.setAlignmentX(Component.LEFT_ALIGNMENT);
+        painelSair.add(botaoSair);
 
         // Adiciona a função de cada um dos botões
 
+        // Cria um novo treino e vai para a página de criação de treinos
         botaoProsseguir.addActionListener(e -> {
 
-            // Coleta os dados de preenchimento
-            String nome = campoTitulo.getText(); 
-            int dificuldade = caixaSelecao.getSelectedIndex(); // 0 = Fácil, 1 = Médio, 2 = Difícil
-
-            // Cria um novo treino com a dificuldade adequada
-            Treino novoTreino;
-
-            if (dificuldade == 0){
-                novoTreino = new Treino(nome, EnumDificuldade.FACIL, professor);
-            } else if (dificuldade == 1){
-                novoTreino = new Treino(nome, EnumDificuldade.MEDIO, professor);
-            } else { // dificuldade == 2
-                novoTreino = new Treino(nome, EnumDificuldade.DIFICIL, professor);
-            }
-
-            // Vai para a tela criadora de treinos
-            frame.setContentPane(new TelaCriadorTreino(frame, telaProfessor, novoTreino, professor));
-            frame.revalidate();
+                // Coleta os dados de preenchimento
+                String nome = campoTitulo.getText();
+                int dificuldade = caixaSelecao.getSelectedIndex(); // 0 = Fácil, 1 = Médio, 2 = Difícil
+                
+                // Cria um novo treino com a dificuldade adequada
+                Treino novoTreino;
+                
+                novoTreino = switch (dificuldade) {
+                    case 0 -> new Treino(nome, EnumDificuldade.FACIL, professor);
+                    case 1 -> new Treino(nome, EnumDificuldade.MEDIO, professor);
+                    case 2 -> new Treino(nome, EnumDificuldade.DIFICIL, professor);
+                    default -> new Treino(nome, EnumDificuldade.DESCONHECIDO, professor);
+                };
+                
+                // Vai para a tela criadora de treinos
+                frame.setContentPane(new TelaCriadorTreino(frame, telaProfessor, novoTreino, professor));
+                frame.revalidate();
         });
 
+        // Volta para a página inicial do professor
         botaoSair.addActionListener(e -> {
             frame.setContentPane(telaProfessor);
             frame.revalidate();
         });
-    }
-
-    // Cria um botão na formatação desejada
-    private static JButton criarBotao(String texto, Dimension size){
-        JButton botao = new JButton(texto);
-        botao.setMaximumSize(size);
-        botao.setPreferredSize(size);
-        botao.setAlignmentX(Component.CENTER_ALIGNMENT);
-        return botao;
     }
 }

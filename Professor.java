@@ -22,7 +22,7 @@ public class Professor extends Usuario {
         novosRecados = 0;
     }
 
-        // ←⛳️ AQUI está o método que você deve adicionar
+    // medoto que é chamado na desserializacao automaticamente
     private void readObject(java.io.ObjectInputStream in) throws IOException, ClassNotFoundException {
         in.defaultReadObject(); // desserializa os dados salvos
         if (alunos == null) alunos = new ArrayList<>();
@@ -38,9 +38,12 @@ public class Professor extends Usuario {
         
     }
 
-
     public void addAluno(Aluno aluno){ // Quando um aluno selecionar esse professor ja colocamos ele no array de alunos deste prof
         alunos.add(aluno);
+    }
+    // Adiciona um novo treino aos treinos criados
+    public void adicionarTreino(Treino treino){
+        treinosCriados.add(treino);
     }
 
     public ArrayList<Aluno> getAlunos(){
