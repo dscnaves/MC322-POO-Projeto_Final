@@ -42,7 +42,7 @@ public abstract class Usuario implements Serializable{
     }
 
     // Obtém a senha 
-    public String getSenha(){
+    public String getSenha() {
         return senha;
     }
 
@@ -61,4 +61,10 @@ public abstract class Usuario implements Serializable{
 
     // Método abstrato que implementaremos na classe aluno e professor
     public abstract void mostrarMenuPrincipal(Scanner entrada);
+
+    // Sobrescreve o método toString para exibir o nome do usuário corretamente em JComboBoxes e outros componentes.
+    @Override
+    public String toString() {
+        return this.getNome();
+    }
 }
