@@ -55,6 +55,7 @@ public class TelaProfessor extends JPanel {
         painelBotoes.add(botaoVerRecados);
         painelBotoes.add(Box.createVerticalStrut(10));
         painelBotoes.add(botaoSair);
+        centro.add(Box.createVerticalStrut(10));
 
         // Adiciona a função de cada um dos botões
 
@@ -78,11 +79,29 @@ public class TelaProfessor extends JPanel {
             frame.revalidate();
         });
 
-        /* 
         botaoVerRecados.addActionListener(e -> {
-            frame.setContentPane(new TelaRecados(frame, professor));
-            frame.revalidate();
-        });*/
+            // Seleciona um aluno para enviar o recado
+            Aluno[] alunos = professor.getAlunos().toArray(new Aluno[0]);
+            if (alunos.length == 0) {
+                JOptionPane.showMessageDialog(frame, "Você não tem alunos adicionados ainda.", "Erro", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            Aluno alunoSelecionado = (Aluno) JOptionPane.showInputDialog(
+                frame,
+                "Selecione o aluno para enviar o recado:",
+                "Enviar Recado",
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                alunos,
+                alunos[0]
+            );
+
+            if (alunoSelecionado != null) {
+                frame.setContentPane(new TelaRecados(sistema, frame, this, professor, alunoSelecionado));
+                frame.revalidate();
+                frame.repaint();
+            }
+        });
 
         botaoSair.addActionListener(e -> {
             telaLogin.limparCampos();
