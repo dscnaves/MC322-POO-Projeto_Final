@@ -10,15 +10,18 @@ public class TelaRecados extends JPanel {
         setBorder(new EmptyBorder(20, 20, 20, 20));
 
         // Título da tela
-        JLabel tituloLabel = new JLabel("Recados de " + usuarioAtual.getNome() + " para " + destinatario.getNome(), SwingConstants.CENTER);
+        JLabel tituloLabel = new JLabel("Recados para " + destinatario.getNome(), SwingConstants.CENTER);
         tituloLabel.setFont(new Font("Arial", Font.BOLD, 18));
         add(tituloLabel, BorderLayout.NORTH);
 
         // Painel para exibir as mensagens
         JPanel mensagensPanel = new JPanel();
         mensagensPanel.setLayout(new BoxLayout(mensagensPanel, BoxLayout.Y_AXIS));
+        
+        // Use um JScrollPane para a área de mensagens
         JScrollPane scrollPane = new JScrollPane(mensagensPanel);
         scrollPane.setBorder(BorderFactory.createTitledBorder("Conversa"));
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS); // Garante a barra de rolagem
         add(scrollPane, BorderLayout.CENTER);
         
         // Exibe todas as mensagens do usuário atual
@@ -27,8 +30,21 @@ public class TelaRecados extends JPanel {
             mensagensPanel.add(new JLabel("Nenhuma mensagem enviada ou recebida."));
         } else {
             for (Comentario comentario : mensagens) {
-                mensagensPanel.add(new JLabel(comentario.toString()));
-                mensagensPanel.add(Box.createVerticalStrut(5)); // Espaçamento entre mensagens
+                // Formatação melhor para cada comentário
+                JPanel comentarioPanel = new JPanel(new BorderLayout());
+                JLabel autorLabel = new JLabel("De: " + comentario.getAutor().getNome() + " em " + comentario.getData());
+                JTextArea textoArea = new JTextArea(comentario.getTexto());
+                textoArea.setEditable(false);
+                textoArea.setLineWrap(true);
+                textoArea.setWrapStyleWord(true);
+                textoArea.setBackground(getBackground()); // Cor de fundo transparente
+                
+                comentarioPanel.setBorder(BorderFactory.createEtchedBorder());
+                comentarioPanel.add(autorLabel, BorderLayout.NORTH);
+                comentarioPanel.add(textoArea, BorderLayout.CENTER);
+                
+                mensagensPanel.add(comentarioPanel);
+                mensagensPanel.add(Box.createVerticalStrut(10)); // Espaçamento entre mensagens
             }
         }
         
@@ -66,6 +82,7 @@ public class TelaRecados extends JPanel {
                 JOptionPane.showMessageDialog(frame, "Mensagem enviada com sucesso!");
                 
                 // Recarrega a tela para mostrar a nova mensagem
+                // Usamos a tela atual como tela anterior para voltar
                 frame.setContentPane(new TelaRecados(sistema, frame, telaAnterior, usuarioAtual, destinatario));
                 frame.revalidate();
                 frame.repaint();
@@ -74,6 +91,7 @@ public class TelaRecados extends JPanel {
             }
         });
 
+        // Adiciona os componentes de entrada no painel de entrada
         inputPanel.add(mensagemScrollPane, BorderLayout.CENTER);
         inputPanel.add(enviarButton, BorderLayout.EAST);
         add(inputPanel, BorderLayout.SOUTH);
@@ -85,6 +103,12 @@ public class TelaRecados extends JPanel {
             frame.revalidate();
             frame.repaint();
         });
-        add(backButton, BorderLayout.SOUTH);
+        
+        // Crie um painel para o botão de voltar para que ele não sobreponha a área de entrada
+        JPanel southPanel = new JPanel(new BorderLayout());
+        southPanel.add(inputPanel, BorderLayout.CENTER);
+        southPanel.add(backButton, BorderLayout.SOUTH);
+        add(southPanel, BorderLayout.SOUTH);
+
     }
 }
