@@ -5,7 +5,7 @@ import javax.swing.border.EmptyBorder;
 
 public class TelaCriadorTreino extends JPanel {
     
-    public TelaCriadorTreino(JFrame frame, TelaProfessor telaProfessor, Treino treino, Professor professor){
+    public TelaCriadorTreino(Sistema sistema, JFrame frame, TelaProfessor telaProfessor, Treino treino, Professor professor){
 
         // O layout básico da tela de criação de treino é um título, com uma lista de exercícios e dois botões
         setLayout(new BorderLayout());
@@ -68,7 +68,7 @@ public class TelaCriadorTreino extends JPanel {
 
         // Abre uma tela que permite criar um novo exercício
         botaoNovoExercicio.addActionListener(e -> {
-            frame.setContentPane(new TelaEscolherTipo(frame, telaProfessor, treino, professor));
+            frame.setContentPane(new TelaEscolherTipo(sistema, frame, telaProfessor, treino, professor));
             frame.revalidate();
         });
 
@@ -76,6 +76,9 @@ public class TelaCriadorTreino extends JPanel {
         botaoFinalizar.addActionListener(e -> {
             // Salva o treino no ArrayList do professor
             professor.adicionarTreino(treino);
+
+            // Vamos salvar no arquivo .dat o que o usuario acabou de tentar registrar (sem isso só salvamos no array e ao encerrar o programa desaparecera))
+            sistema.salvarDados();
 
             // Volta para a tela inicial do professor
             frame.setContentPane(telaProfessor);

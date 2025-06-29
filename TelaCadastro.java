@@ -43,7 +43,7 @@ public class TelaCadastro extends JPanel {
             // Estamos usando try pois eu tinha tratado o cadastro invalido com uma excecao
             try {
                 // tipo é a variavel que controla se é aluno ou professor. Estamos usando um array (com dois indices (0 e 1) para o usuario selecionar na caixa)
-                sistema.cadastro(nome, userName, senha, tipo); // Só executará a prox linha se for um cadastro valido
+                sistema.cadastro(nome, userName, senha, tipo); // esse metodo ja salva o user no arq .dat. Só executará a prox linha se for um cadastro valido
                 JOptionPane.showMessageDialog(frame, "Usuário cadastrado com sucesso!"); // exibimos mensagem de sucesso
                 frame.setContentPane(new TelaLogin(frame, sistema)); // Mudamos para a tela de Login
                 limparCampos();

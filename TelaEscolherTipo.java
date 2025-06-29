@@ -4,7 +4,7 @@ import javax.swing.border.EmptyBorder;
 
 public class TelaEscolherTipo extends JPanel {
 
-    public TelaEscolherTipo(JFrame frame, TelaProfessor telaProfessor, Treino treino, Professor professor){
+    public TelaEscolherTipo(Sistema sistema, JFrame frame, TelaProfessor telaProfessor, Treino treino, Professor professor){
         // O layout básico da tela de escolha é um título e dois botões com opções
         setLayout(new BorderLayout());
         setBorder(new EmptyBorder(30, 40, 30, 40));
@@ -45,12 +45,12 @@ public class TelaEscolherTipo extends JPanel {
         // Adiciona a função de cada um dos botões
 
         botaoRepeticoes.addActionListener(e -> {
-            frame.setContentPane(new TelaCriadorExRepeticoes(frame, telaProfessor, treino, professor));
+            frame.setContentPane(new TelaCriadorExRepeticoes(sistema, frame, telaProfessor, treino, professor));
             frame.revalidate();
         });
 
         botaoDuracao.addActionListener(e -> {
-            frame.setContentPane(new TelaCriadorExDuracao(frame, telaProfessor, treino, professor));
+            frame.setContentPane(new TelaCriadorExDuracao(sistema, frame, telaProfessor, treino, professor));
             frame.revalidate();
         });
     }

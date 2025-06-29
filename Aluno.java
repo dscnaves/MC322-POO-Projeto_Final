@@ -12,8 +12,7 @@ public class Aluno extends Usuario { // Usuario é serializavel (Serialização 
     private static final long serialVersionUID = 1L; 
     // O Aluno herda atributos e métodos da classe Usuario
     private ArrayList<Professor> professores; // Professores que o Aluno adicionou
-
-    private ArrayList<Treino> treinosRecebidos = new ArrayList<>();
+    private ArrayList<Treino> treinosRecebidos;
     private ArrayList<TreinoExecutavel> progresso;
     private int novosRecados;
 
@@ -26,12 +25,15 @@ public class Aluno extends Usuario { // Usuario é serializavel (Serialização 
 
         novosRecados = 0;
     }
-    // ←⛳️ AQUI está o método que você deve adicionar
+
+    // metodo que sobrescreve a desserialização padrão. Ele é chamado pelo metodo carregarDados da classe sistema.
     private void readObject(java.io.ObjectInputStream in) throws IOException, ClassNotFoundException {
-        in.defaultReadObject(); // desserializa os dados salvos
+        in.defaultReadObject(); // desserializa os dados salvos, Ele atribui automaticamente aos campos serializáveis os valores salvos no arquivo 
+        // Após a desserialização, se os campos vieram como null (pois podemos guardar eles vazios no arquivo), criamos um novo ArrayList<> para evitar NullPointerException no resto do código.
         if (professores == null) professores = new ArrayList<>();
         if (treinosRecebidos == null) treinosRecebidos = new ArrayList<>();
         if (progresso == null) progresso = new ArrayList<>();
+        // Se nao estiverem vazios vms ter todas as informacoes anteriormente registradas
     }
 
     public void registrarProgresso(TreinoExecutavel progresso){

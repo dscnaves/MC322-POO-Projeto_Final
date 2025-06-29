@@ -4,10 +4,12 @@
 import java.io.Serializable;
 
 public class Tempo implements Serializable{
-    
+    // O serialVersionUID é um identificador de versão da classe. Ele serve para garantir que, ao desserializar um objeto (ler do arquivo), a classe usada hoje ainda é compatível com a classe usada quando o objeto foi salvo.
+    private static final long serialVersionUID = 1L;
+
     // Guarda um intervalo de tempo medido em segundos ou minutos
-    private final int duracao;
-    private final EnumTempo medida;
+    private int duracao;
+    private EnumTempo medida;
 
     // Construtor
     public Tempo(int duracao, EnumTempo medida){

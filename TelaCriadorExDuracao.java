@@ -4,7 +4,7 @@ import javax.swing.border.EmptyBorder;
 
 public class TelaCriadorExDuracao extends JPanel {
     
-    public TelaCriadorExDuracao(JFrame frame, TelaProfessor telaProfessor, Treino treino, Professor professor){
+    public TelaCriadorExDuracao(Sistema sistema, JFrame frame, TelaProfessor telaProfessor, Treino treino, Professor professor){
     
         // O layout básico da tela de criação de exercício é um título, com campos de preenchimento e um botão
         setLayout(new BorderLayout());
@@ -108,9 +108,9 @@ public class TelaCriadorExDuracao extends JPanel {
                 // Cria um novo exercicio
                 ExercicioDuracao ex = new ExercicioDuracao(nome, series, intervalo, duracao);
                 treino.adicionarExercicio(ex);
-                
+
                 // Vai para a tela criadora de treinos
-                frame.setContentPane(new TelaCriadorTreino(frame, telaProfessor, treino, professor));
+                frame.setContentPane(new TelaCriadorTreino(sistema, frame, telaProfessor, treino, professor));
                 frame.revalidate();
         });
     }

@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -9,10 +10,10 @@ import java.util.Scanner;
 public abstract class Usuario implements Serializable{ 
     // O serialVersionUID é um identificador de versão da classe. Ele serve para garantir que, ao desserializar um objeto (ler do arquivo), a classe usada hoje ainda é compatível com a classe usada quando o objeto foi salvo.
     private static final long serialVersionUID = 1L; 
-    private final String nome;
-    private final String userName;
-    private final String senha;
-    private final ArrayList<Comentario> mensagens;
+    private String nome;
+    private String userName;
+    private String senha;
+    private ArrayList<Comentario> mensagens;
 
     // Construtor
     public Usuario(String nome,String userName, String senha){
@@ -20,6 +21,14 @@ public abstract class Usuario implements Serializable{
         this.userName = userName;
         this.senha = senha;
         mensagens = new ArrayList<>();
+    }
+
+    // metodo que sobrescreve a desserialização padrão. Ele é chamado pelo metodo carregarDados da classe sistema.
+    private void readObject(java.io.ObjectInputStream in) throws IOException, ClassNotFoundException {
+        in.defaultReadObject(); // desserializa os dados salvos, Ele atribui automaticamente aos campos serializáveis os valores salvos no arquivo 
+        // Após a desserialização, se os campos vieram como null (pois podemos guardar eles vazios no arquivo), criamos um novo ArrayList<> para evitar NullPointerException no resto do código.
+        if (mensagens == null) mensagens = new ArrayList<>();
+        // Se nao estiverem vazios vms ter todas as informacoes anteriormente registradas
     }
 
     // Obtém o nome do usuário

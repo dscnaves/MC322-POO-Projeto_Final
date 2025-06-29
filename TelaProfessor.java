@@ -59,7 +59,7 @@ public class TelaProfessor extends JPanel {
         // Adiciona a função de cada um dos botões
 
         botaoNovoTreino.addActionListener(e -> {
-            frame.setContentPane(new TelaNovoTreino(frame, this, professor));
+            frame.setContentPane(new TelaNovoTreino(sistema, frame, this, professor));
             frame.revalidate();
         });
 
