@@ -5,7 +5,7 @@ import javax.swing.border.EmptyBorder;
 // Tela mostrada quando um usuário que é um professor faz login
 public class TelaProfessor extends JPanel {
 
-    public TelaProfessor(JFrame frame, Professor professor) {
+    public TelaProfessor(JFrame frame, TelaLogin telaLogin, Professor professor) {
         // O layout básico da tela do professor é feito em uma coluna com vários botões e uma margem 
         setLayout(new BorderLayout());
         setBorder(new EmptyBorder(30, 40, 30, 40));
@@ -27,7 +27,7 @@ public class TelaProfessor extends JPanel {
         centro.add(textoBoasVindas);
         centro.add(textoRecados);
         centro.add(Box.createVerticalStrut(20));
-        Dimension botaoSize = new Dimension(220, 35);
+        Dimension botaoSize = new Dimension(400, 50);
 
         // Configurações dos botões
         JPanel painelBotoes = new JPanel();
@@ -41,6 +41,7 @@ public class TelaProfessor extends JPanel {
         JButton botaoIndicarAluno = criarBotao("Indicar treino para um aluno", botaoSize);
         JButton botaoVerAlunos = criarBotao("Visualizar alunos", botaoSize);
         JButton botaoVerRecados = criarBotao("Visualizar recados", botaoSize);
+        JButton botaoSair = criarBotao("Sair", botaoSize);
 
         // Adiciona os botões no painel
         painelBotoes.add(botaoNovoTreino);
@@ -52,6 +53,8 @@ public class TelaProfessor extends JPanel {
         painelBotoes.add(botaoVerAlunos);
         painelBotoes.add(Box.createVerticalStrut(10));
         painelBotoes.add(botaoVerRecados);
+        painelBotoes.add(Box.createVerticalStrut(10));
+        painelBotoes.add(botaoSair);
 
         // Adiciona a função de cada um dos botões
 
@@ -80,6 +83,12 @@ public class TelaProfessor extends JPanel {
             frame.setContentPane(new TelaRecados(frame, professor));
             frame.revalidate();
         });*/
+
+        botaoSair.addActionListener(e -> {
+            telaLogin.limparCampos();
+            frame.setContentPane(telaLogin);
+            frame.revalidate();
+        });
     }
 
     private static JButton criarBotao(String texto, Dimension size){
