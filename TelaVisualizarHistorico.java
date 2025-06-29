@@ -1,9 +1,9 @@
-import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import javax.swing.*;
 
 public class TelaVisualizarHistorico extends JPanel {
-    public TelaVisualizarHistorico(JFrame frame, Aluno aluno) {
+    public TelaVisualizarHistorico(JFrame frame, TelaAluno telaAluno, Aluno aluno) {
         setLayout(new BorderLayout(10, 10));
         setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
@@ -37,7 +37,7 @@ public class TelaVisualizarHistorico extends JPanel {
         // Botão para voltar
         JButton backButton = new JButton("Voltar");
         backButton.addActionListener(e -> {
-            frame.setContentPane(new TelaAluno(frame, aluno));
+            frame.setContentPane(telaAluno);
             frame.revalidate();
             frame.repaint();
         });

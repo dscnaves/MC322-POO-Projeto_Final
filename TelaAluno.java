@@ -1,9 +1,9 @@
-import javax.swing.*;
 import java.awt.*;
+import javax.swing.*;
 
 // Usamos JPanel para mudar entre "telas" 
 public class TelaAluno extends JPanel {
-    public TelaAluno(JFrame frame, Aluno aluno) { // Recebemos sempre por parametro a janela, aqui recebemos o aluno tambem
+    public TelaAluno(JFrame frame, TelaLogin telaLogin, Aluno aluno) { // Recebemos sempre por parametro a janela, aqui recebemos o aluno tambem
         
         // Configurações do layout
         setLayout(new BorderLayout());
@@ -34,33 +34,28 @@ public class TelaAluno extends JPanel {
 
         // Ações dos botões
         visualizarTreinosButton.addActionListener(e -> {
-            frame.setContentPane(new TelaVisualizarTreinos(frame, aluno));
+            frame.setContentPane(new TelaVisualizarTreinos(frame, this, aluno));
             frame.revalidate();
             frame.repaint();
         });
 
         registrarProgressoButton.addActionListener(e -> {
-            frame.setContentPane(new TelaRegistrarProgresso(frame, aluno));
+            frame.setContentPane(new TelaRegistrarProgresso(frame, this, aluno));
             frame.revalidate();
             frame.repaint();
         });
 
         visualizarHistoricoButton.addActionListener(e -> {
-            frame.setContentPane(new TelaVisualizarHistorico(frame, aluno));
+            frame.setContentPane(new TelaVisualizarHistorico(frame, this, aluno));
             frame.revalidate();
             frame.repaint();
         });
 
         // Ação do botão de sair ao ser clicado
         sairButton.addActionListener(e -> {
-            // Recupera o Sistema armazenado como propriedade do frame
-            Sistema sistema = (Sistema) frame.getRootPane().getClientProperty("sistema");
-            // Substitui o conteúdo principal (JPanel) da janela (JFrame) pela tela de login novamente
-            frame.setContentPane(new TelaLogin(frame, sistema));
-            // Recalcular o layout de todos os componentes no novo painel
+            telaLogin.limparCampos();
+            frame.setContentPane(telaLogin);
             frame.revalidate();
-            // Atualiza a janela para refletir a mudança
-            frame.repaint();
         });
     }
 }

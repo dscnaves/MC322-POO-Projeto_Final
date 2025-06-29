@@ -3,11 +3,15 @@ import javax.swing.*;
 
 // Usamos JPanel para mudar entre "telas" 
 public class TelaLogin extends JPanel {
+
+    private JTextField campoUserName;
+    private JPasswordField campoSenha;
+
     public TelaLogin(JFrame frame, Sistema sistema) {
         setLayout(new GridLayout(0,1));
 
-        JTextField campoUserName = new JTextField();
-        JPasswordField campoSenha = new JPasswordField();
+        campoUserName = new JTextField();
+        campoSenha = new JPasswordField();
         JButton botaoLogin = new JButton("Entrar");
         JButton botaoCadastro = new JButton("Cadastrar");
 
@@ -32,9 +36,9 @@ public class TelaLogin extends JPanel {
 
                 // Aqui verificamos o tipo do usuário retornado pelo metodo login:
                 if (user instanceof Aluno) {
-                    frame.setContentPane(new TelaAluno(frame, (Aluno) user)); // muda para a tela principal do aluno
+                    frame.setContentPane(new TelaAluno(frame, this, (Aluno) user)); // muda para a tela principal do aluno
                 } else if (user instanceof Professor) {
-                    frame.setContentPane(new TelaProfessor(frame, (Professor) user)); // muda para a tela principal do professor
+                    frame.setContentPane(new TelaProfessor(frame, this, (Professor) user)); // muda para a tela principal do professor
                 }
 
                 frame.revalidate();
@@ -47,5 +51,10 @@ public class TelaLogin extends JPanel {
             frame.setContentPane(new TelaCadastro(frame, sistema)); //substitui o conteúdo visível da janela para agora exibirmos a tela de cadastro
             frame.revalidate();
         });
+    }
+
+    public void limparCampos(){
+        campoUserName.setText("");
+        campoSenha.setText("");
     }
 }

@@ -1,9 +1,9 @@
-import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import javax.swing.*;
 
 public class TelaVisualizarTreinos extends JPanel {
-    public TelaVisualizarTreinos(JFrame frame, Aluno aluno) {
+    public TelaVisualizarTreinos(JFrame frame, TelaAluno telaAluno, Aluno aluno) {
         setLayout(new BorderLayout(10, 10)); // Layout para organizar os componentes
         setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20)); // Adiciona uma margem
 
@@ -47,7 +47,7 @@ public class TelaVisualizarTreinos extends JPanel {
         // Botão para voltar à tela do aluno
         JButton backButton = new JButton("Voltar");
         backButton.addActionListener(e -> {
-            frame.setContentPane(new TelaAluno(frame, aluno));
+            frame.setContentPane(telaAluno);
             frame.revalidate();
             frame.repaint();
         });

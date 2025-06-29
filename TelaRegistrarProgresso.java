@@ -1,9 +1,9 @@
-import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import javax.swing.*;
 
 public class TelaRegistrarProgresso extends JPanel {
-    public TelaRegistrarProgresso(JFrame frame, Aluno aluno) {
+    public TelaRegistrarProgresso(JFrame frame, TelaAluno telaAluno, Aluno aluno) {
         setLayout(new BorderLayout(10, 10));
         setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
@@ -38,7 +38,7 @@ public class TelaRegistrarProgresso extends JPanel {
                 // Ex: aluno.registrarProgresso(treinoSelecionado, percentual);
                 JOptionPane.showMessageDialog(frame, "Progresso de " + percentual + "% registrado para o treino: " + treinoSelecionado.getNome());
                 // Você pode voltar para a tela anterior após o registro, se quiser
-                frame.setContentPane(new TelaAluno(frame, aluno));
+                frame.setContentPane(telaAluno);
                 frame.revalidate();
                 frame.repaint();
             } else {
@@ -52,7 +52,7 @@ public class TelaRegistrarProgresso extends JPanel {
         // Botão para voltar
         JButton backButton = new JButton("Voltar");
         backButton.addActionListener(e -> {
-            frame.setContentPane(new TelaAluno(frame, aluno));
+            frame.setContentPane(telaAluno);
             frame.revalidate();
             frame.repaint();
         });
