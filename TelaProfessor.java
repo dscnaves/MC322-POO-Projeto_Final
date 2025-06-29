@@ -59,15 +59,15 @@ public class TelaProfessor extends JPanel {
         // Adiciona a função de cada um dos botões
 
         botaoNovoTreino.addActionListener(e -> {
-            frame.setContentPane(new TelaNovoTreino(frame, professor));
+            frame.setContentPane(new TelaNovoTreino(frame, this, professor));
             frame.revalidate();
         });
 
-        /* 
         botaoVerTreinos.addActionListener(e -> {
-            frame.setContentPane(new TelaTreinosCriados(frame, professor));
+            frame.setContentPane(new TelaTreinosCriados(frame, this, professor));
             frame.revalidate();
         });
+        /* 
 
         botaoIndicarAluno.addActionListener(e -> {
             frame.setContentPane(new TelaIndicarParaAluno(frame, professor));
@@ -91,6 +91,7 @@ public class TelaProfessor extends JPanel {
         });
     }
 
+    //Cria um botão na formatação desejada
     private static JButton criarBotao(String texto, Dimension size){
         JButton botao = new JButton(texto);
         botao.setMaximumSize(size);
