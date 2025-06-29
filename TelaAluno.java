@@ -10,12 +10,15 @@ public class TelaAluno extends JPanel {
 
         // Título de boas-vindas
         JLabel welcomeLabel = new JLabel("Bem-vindo, " + aluno.getNome() + "!", SwingConstants.CENTER);
+        welcomeLabel.setFont(new Font("Arial", Font.BOLD, 20));
+        welcomeLabel.setBorder(BorderFactory.createEmptyBorder(20, 0, 20, 0));
         add(welcomeLabel, BorderLayout.NORTH);
 
         // Painel para os botões
         JPanel buttonPanel = new JPanel();
         // 4 linhas, 1 coluna, hgap	Espaço horizontal entre os componentes (10 pixels), vgap	Espaço vertical entre os componentes (10 pixels)
         buttonPanel.setLayout(new GridLayout(4, 1, 10, 10)); 
+        buttonPanel.setBorder(BorderFactory.createEmptyBorder(0, 50, 0, 50));
 
         // Botões de funcionalidade do aluno
         JButton visualizarTreinosButton = new JButton("Visualizar Treinos Recebidos");
@@ -33,18 +36,21 @@ public class TelaAluno extends JPanel {
         add(buttonPanel, BorderLayout.CENTER);
 
         // Ações dos botões
+        // Botão para visualizar treinos recebidos
         visualizarTreinosButton.addActionListener(e -> {
             frame.setContentPane(new TelaVisualizarTreinos(frame, aluno));
             frame.revalidate();
             frame.repaint();
         });
 
+        // Botão para registrar progresso
         registrarProgressoButton.addActionListener(e -> {
             frame.setContentPane(new TelaRegistrarProgresso(frame, aluno));
             frame.revalidate();
             frame.repaint();
         });
 
+        // Botão para visualizar histórico de treinos
         visualizarHistoricoButton.addActionListener(e -> {
             frame.setContentPane(new TelaVisualizarHistorico(frame, aluno));
             frame.revalidate();
