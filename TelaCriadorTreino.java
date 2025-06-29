@@ -39,8 +39,10 @@ public class TelaCriadorTreino extends JPanel {
         if (exercicios.isEmpty()){
             lista.add(new JLabel("Ainda não foram adicionados exercícios ao treino"));
         }
-        for (int i = 0; i < exercicios.size(); i++){
-            JLabel texto = new JLabel(exercicios.get(i).descreverExercicio());
+        for (Exercicio ex : treino.getArrayExercicios()) {
+            String desc = ex.descreverExercicio()
+                            .replace("\n", "<br>");          // quebra de linha
+            JLabel texto = new JLabel("<html>" + desc + "</html>");
             texto.setAlignmentX(Component.LEFT_ALIGNMENT);
             lista.add(texto);
             lista.add(Box.createVerticalStrut(10));
@@ -66,7 +68,7 @@ public class TelaCriadorTreino extends JPanel {
 
         // Abre uma tela que permite criar um novo exercício
         botaoNovoExercicio.addActionListener(e -> {
-            frame.setContentPane(new TelaEscolherTipo(frame, this, treino, professor));
+            frame.setContentPane(new TelaEscolherTipo(frame, telaProfessor, treino, professor));
             frame.revalidate();
         });
 
