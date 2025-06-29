@@ -4,7 +4,7 @@ import javax.swing.*;
 
 // Classe para a tela de visualização de treinos recebidos pelo aluno
 public class TelaVisualizarTreinos extends JPanel {
-    public TelaVisualizarTreinos(JFrame frame, Aluno aluno) {
+    public TelaVisualizarTreinos(JFrame frame, TelaAluno telaAluno, Aluno aluno) {
 
         // Layout para organizar os componentes
         setLayout(new BorderLayout(10, 10));
@@ -56,13 +56,13 @@ public class TelaVisualizarTreinos extends JPanel {
             }
         }
 
-        // // Botão para voltar à tela do aluno
-        // JButton backButton = new JButton("Voltar");
-        // backButton.addActionListener(e -> {
-        //     frame.setContentPane(telaAluno);
-        //     frame.revalidate();
-        //     frame.repaint();
-        // });
-        // add(backButton, BorderLayout.SOUTH);
+        // Botão para voltar à tela do aluno
+        JButton backButton = new JButton("Voltar");
+        backButton.addActionListener(e -> {
+            frame.setContentPane(telaAluno);
+            frame.revalidate();
+            frame.repaint();
+        });
+        add(backButton, BorderLayout.SOUTH);
     }
 }

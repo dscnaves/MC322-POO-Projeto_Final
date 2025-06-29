@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import javax.swing.*;
 
 public class TelaRegistrarProgresso extends JPanel {
-    public TelaRegistrarProgresso(JFrame frame, TelaAluno telaAluno, Aluno aluno) {
+    public TelaRegistrarProgresso(Sistema sistema, JFrame frame, TelaAluno telaAluno, Aluno aluno) {
         setLayout(new BorderLayout(10, 10));
         setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
