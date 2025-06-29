@@ -8,7 +8,9 @@ import java.util.ArrayList;
 
 public class Sistema {
     private static final String ARQUIVO_USUARIOS = "usuarios.dat"; // define o nome do arquivo que usaremos para serializar
-    private static final ArrayList<Usuario> usuarios = new ArrayList<>();
+    private static ArrayList<Usuario> usuarios = new ArrayList<>();
+    private static  ArrayList<Aluno> alunos = new ArrayList<>();
+    private static  ArrayList<Professor> professores = new ArrayList<>();
 
     public Sistema(){
         carregarDados(); // Vamos pegar os dados que guardamos ao fazer a serializacao (estamos desserializando aqui)
@@ -68,11 +70,29 @@ public class Sistema {
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(arquivo))) { // Abrimos o arquivo para leitura e ObjectInputStream interpreta os bytes lidos e "transforma" para objetos
             ArrayList<Usuario> lista = (ArrayList<Usuario>) in.readObject(); // Aqui fazemos um cast (forcamos in.readObject() "o que foi lido" ser do tipo (ArrayList<Usuario>))
             usuarios.clear(); // limpa o array usuarios para nao dar erros e nem duplicacoes por seguranca
+            alunos.clear(); // limpa o array alunos para nao dar erros e nem duplicacoes por seguranca
+            professores.clear(); // limpa o array professores para nao dar erros e nem duplicacoes por seguranca
             usuarios.addAll(lista); //adiciona a lista dos Usuarios serializados (que foram lidos do arquivo)
+            // Vamos separar em dois arrays professores e alunos para usar posteriormente. Estamos carregando todos os alunos e professores ja castrados
+            for (Usuario user : usuarios) {
+                if (user instanceof Aluno) 
+                    alunos.add((Aluno) user); // Se for um aluno, fazemos um casting para "tranformar" para Aluno e assim poder guardar no array
+                else if (user instanceof Professor)
+                    professores.add((Professor) user); // Se for um aluno, fazemos um casting para "tranformar" para Aluno e assim poder guardar no array
+            }
         } catch (IOException | ClassNotFoundException e) {
             System.out.println("Erro ao carregar dados: " + e.getMessage());
         }
     }
+
+    public ArrayList<Professor> getArrayProfessores(){
+        return professores;
+    }
+
+    public ArrayList<Aluno> getArrayAlunos(){
+        return alunos;
+    }
+
 
 
     // cast: é forcar a conversão. Ex: vamos forcar a conversao de double para int.

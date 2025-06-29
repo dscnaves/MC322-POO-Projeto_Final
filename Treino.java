@@ -1,6 +1,9 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Treino {
+// Essa classe precisa ser serializavel para podermos guardar as informacoes dos alunos e professores
+// Classes que herdam dessa não precisam implementar serializable pois ja herdam. Enum e Exceptions tambem nao precisam
+public class Treino implements Serializable{
 
     private final String nome;
     private final EnumDificuldade dificuldade;

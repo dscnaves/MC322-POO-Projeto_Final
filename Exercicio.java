@@ -1,4 +1,8 @@
-public class Exercicio {
+import java.io.Serializable;
+
+// Essa classe precisa ser serializavel para podermos guardar as informacoes dos alunos e professores
+// Classes que herdam dessa não precisam implementar serializable pois ja herdam. Enum e Exceptions tambem nao precisam
+public class Exercicio implements Serializable {
 
     private final String nome;
     private final int numSeries;

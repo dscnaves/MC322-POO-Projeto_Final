@@ -1,6 +1,9 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class TreinoExecutavel {
+// Essa classe precisa ser serializavel para podermos guardar as informacoes dos alunos e professores
+// Classes que herdam dessa não precisam implementar serializable pois ja herdam. Enum e Exceptions tambem nao precisam
+public class TreinoExecutavel implements Serializable{
     
     // Recebe um Treino por agregação e pode registrar o progresso e comentários dos alunos nesse treino, sem alterar o Treino original
     private final Treino treino;

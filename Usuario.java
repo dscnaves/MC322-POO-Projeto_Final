@@ -2,8 +2,13 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public abstract class Usuario implements Serializable{ // Usuario é serializavel (Serialização é o processo de transformar um objeto Java em uma sequência de bytes,)
-    private static final long serialVersionUID = 1L; // O serialVersionUID é um identificador de versão da classe. Ele serve para garantir que, ao desserializar um objeto (ler do arquivo), a classe usada hoje ainda é compatível com a classe usada quando o objeto foi salvo.
+// Essa classe precisa ser serializavel para podermos guardar as informacoes dos alunos e professores
+// Classes que herdam dessa não precisam implementar serializable pois ja herdam. Enum e Exceptions tambem nao precisam
+    // Usuario é serializavel (Serialização é o processo de transformar um objeto Java em uma sequência de bytes,)
+
+public abstract class Usuario implements Serializable{ 
+    // O serialVersionUID é um identificador de versão da classe. Ele serve para garantir que, ao desserializar um objeto (ler do arquivo), a classe usada hoje ainda é compatível com a classe usada quando o objeto foi salvo.
+    private static final long serialVersionUID = 1L; 
     private final String nome;
     private final String userName;
     private final String senha;

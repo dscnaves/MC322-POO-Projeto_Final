@@ -36,19 +36,20 @@ public class TelaLogin extends JPanel {
 
                 // Aqui verificamos o tipo do usuário retornado pelo metodo login:
                 if (user instanceof Aluno) {
-                    frame.setContentPane(new TelaAluno(frame, this, (Aluno) user)); // muda para a tela principal do aluno
+                    frame.setContentPane(new TelaAluno(sistema, frame, this, (Aluno) user)); // muda para a tela principal do aluno
                 } else if (user instanceof Professor) {
-                    frame.setContentPane(new TelaProfessor(frame, this, (Professor) user)); // muda para a tela principal do professor
+                    frame.setContentPane(new TelaProfessor(sistema, frame, this, (Professor) user)); // muda para a tela principal do professor
                 }
-
+                limparCampos();
                 frame.revalidate();
             } catch (CadastroInvalidoException ex) {
+                limparCampos();
                 JOptionPane.showMessageDialog(frame, ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
             }
         });
 
         botaoCadastro.addActionListener(e -> {
-            frame.setContentPane(new TelaCadastro(frame, sistema)); //substitui o conteúdo visível da janela para agora exibirmos a tela de cadastro
+            frame.setContentPane(new TelaCadastro(frame, sistema, this)); //substitui o conteúdo visível da janela para agora exibirmos a tela de cadastro
             frame.revalidate();
         });
     }

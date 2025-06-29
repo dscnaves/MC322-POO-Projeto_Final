@@ -5,7 +5,7 @@ import javax.swing.border.EmptyBorder;
 // Tela mostrada quando um usuário que é um professor faz login
 public class TelaProfessor extends JPanel {
 
-    public TelaProfessor(JFrame frame, TelaLogin telaLogin, Professor professor) {
+    public TelaProfessor(Sistema sistema, JFrame frame, TelaLogin telaLogin, Professor professor) {
         // O layout básico da tela do professor é feito em uma coluna com vários botões e uma margem 
         setLayout(new BorderLayout());
         setBorder(new EmptyBorder(30, 40, 30, 40));
@@ -73,12 +73,14 @@ public class TelaProfessor extends JPanel {
             frame.setContentPane(new TelaIndicarParaAluno(frame, professor));
             frame.revalidate();
         });
+        */
 
         botaoVerAlunos.addActionListener(e -> {
-            frame.setContentPane(new TelaVisualizarAlunos(frame, professor));
+            frame.setContentPane(new TelaVisualizarAlunos(frame, professor, this));
             frame.revalidate();
         });
 
+        /* 
         botaoVerRecados.addActionListener(e -> {
             frame.setContentPane(new TelaRecados(frame, professor));
             frame.revalidate();
