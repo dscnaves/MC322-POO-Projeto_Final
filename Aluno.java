@@ -1,5 +1,4 @@
 // O Aluno herda atributos e metodos da classe Usuário
-
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -22,13 +21,12 @@ public class Aluno extends Usuario { // Usuario é serializavel (Serialização 
         treinosRecebidos = new ArrayList<>();
         progresso = new ArrayList<>();
         professores = new ArrayList<>();
-
-        novosRecados = 0;
+        novosRecados = 0; // Inicializamos a contagem de novos recados
     }
 
     // metodo que sobrescreve a desserialização padrão. Ele é chamado pelo metodo carregarDados da classe sistema.
     private void readObject(java.io.ObjectInputStream in) throws IOException, ClassNotFoundException {
-        in.defaultReadObject(); // desserializa os dados salvos, Ele atribui automaticamente aos campos serializáveis os valores salvos no arquivo 
+        in.defaultReadObject(); // desserializa os dados salvos, Ele atribui automaticamente aos campos serializáveis os valores salvos no arquivo
         // Após a desserialização, se os campos vieram como null (pois podemos guardar eles vazios no arquivo), criamos um novo ArrayList<> para evitar NullPointerException no resto do código.
         if (professores == null) professores = new ArrayList<>();
         if (treinosRecebidos == null) treinosRecebidos = new ArrayList<>();
@@ -48,8 +46,19 @@ public class Aluno extends Usuario { // Usuario é serializavel (Serialização 
 
     }
 
+    @Override
     public int getNovosRecados(){
         return novosRecados;
+    }
+
+    @Override
+    public void incrementarNovosRecados() {
+        this.novosRecados++;
+    }
+
+    @Override
+    public void zerarNovosRecados() {
+        this.novosRecados = 0;
     }
 
     public void addProf(Professor prof){

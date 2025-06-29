@@ -29,54 +29,70 @@ public class TelaAluno extends JPanel {
         centro.add(Box.createVerticalStrut(20));
         Dimension botaoSize = new Dimension(400, 50);
 
-        // Configurações dos botões
-        JPanel painelBotoes = new JPanel();
-        painelBotoes.setLayout(new BoxLayout(painelBotoes, BoxLayout.Y_AXIS));
-        painelBotoes.setAlignmentX(Component.CENTER_ALIGNMENT);
-        centro.add(painelBotoes);
-
-        // Criando botões da tela inicial do professor
-        JButton visualizarTreinosButton = criarBotao("Visualizar treinos", botaoSize);
-        JButton registrarProgressoButton = criarBotao("Registrar progresso", botaoSize);
-        JButton visualizarHistoricoButton = criarBotao("Visualizar histórico", botaoSize);
-        JButton adicionarProfButton =  criarBotao("Adicionar Professor", botaoSize);
+        // Configurações e adição dos botões
+        JButton visualizarTreinosButton = criarBotao("Visualizar Treinos Recebidos", botaoSize);
+        JButton registrarProgressoButton = criarBotao("Registrar Progresso", botaoSize);
+        JButton visualizarHistoricoButton = criarBotao("Visualizar Histórico", botaoSize);
+        JButton adicionarProfButton = criarBotao("Adicionar Professor", botaoSize);
+        JButton enviarRecadoButton = criarBotao("Enviar/Ver Recados", botaoSize);
         JButton sairButton = criarBotao("Sair", botaoSize);
-   
-        // Adiciona os botões no painel
-        painelBotoes.add(visualizarTreinosButton);
-        painelBotoes.add(Box.createVerticalStrut(10));
-        painelBotoes.add(registrarProgressoButton);
-        painelBotoes.add(Box.createVerticalStrut(10));
-        painelBotoes.add(visualizarHistoricoButton);
-        painelBotoes.add(Box.createVerticalStrut(10));
-        painelBotoes.add(adicionarProfButton);
-        painelBotoes.add(Box.createVerticalStrut(10));
-        painelBotoes.add(sairButton);
-        painelBotoes.add(Box.createVerticalStrut(10));
+
+        centro.add(visualizarTreinosButton);
+        centro.add(Box.createVerticalStrut(10));
+        centro.add(registrarProgressoButton);
+        centro.add(Box.createVerticalStrut(10));
+        centro.add(visualizarHistoricoButton);
+        centro.add(Box.createVerticalStrut(10));
+        centro.add(adicionarProfButton);
+        centro.add(Box.createVerticalStrut(10));
+        centro.add(enviarRecadoButton);
+        centro.add(Box.createVerticalStrut(10));
+        centro.add(sairButton);
+        centro.add(Box.createVerticalStrut(10));
 
         // Ações dos botões
         visualizarTreinosButton.addActionListener(e -> {
-            frame.setContentPane(new TelaVisualizarTreinos(frame, this, aluno));
-            frame.revalidate();
-            frame.repaint();
+            // A ser implementado em outra tela
+            JOptionPane.showMessageDialog(frame, "Funcionalidade a ser implementada.");
         });
 
         registrarProgressoButton.addActionListener(e -> {
-            frame.setContentPane(new TelaRegistrarProgresso(frame, this, aluno));
-            frame.revalidate();
-            frame.repaint();
+            // A ser implementado em outra tela
+            JOptionPane.showMessageDialog(frame, "Funcionalidade a ser implementada.");
         });
 
         visualizarHistoricoButton.addActionListener(e -> {
-            frame.setContentPane(new TelaVisualizarHistorico(frame, this, aluno));
-            frame.revalidate();
-            frame.repaint();
+            // A ser implementado em outra tela
+            JOptionPane.showMessageDialog(frame, "Funcionalidade a ser implementada.");
         });
 
         adicionarProfButton.addActionListener(e -> {
-            frame.setContentPane(new TelaAdicionarProf(sistema, frame, this, aluno));
-            frame.revalidate();
-            frame.repaint();
+            // A ser implementado em outra tela
+            JOptionPane.showMessageDialog(frame, "Funcionalidade a ser implementada.");
+        });
+        
+        enviarRecadoButton.addActionListener(e -> {
+            // Seleciona um professor para enviar o recado
+            Professor[] professores = aluno.getProfessores().toArray(new Professor[0]);
+            if (professores.length == 0) {
+                JOptionPane.showMessageDialog(frame, "Você não adicionou nenhum professor ainda.", "Erro", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            Professor professorSelecionado = (Professor) JOptionPane.showInputDialog(
+                frame,
+                "Selecione o professor para enviar o recado:",
+                "Enviar Recado",
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                professores,
+                professores[0]
+            );
+
+            if (professorSelecionado != null) {
+                frame.setContentPane(new TelaRecados(sistema, frame, this, aluno, professorSelecionado));
+                frame.revalidate();
+                frame.repaint();
+            }
         });
 
         // Ação do botão de sair ao ser clicado
@@ -87,7 +103,7 @@ public class TelaAluno extends JPanel {
         });
     }
 
-    //Cria um botão na formatação desejada
+    // Cria um botão na formatação desejada
     private static JButton criarBotao(String texto, Dimension size){
         JButton botao = new JButton(texto);
         botao.setMaximumSize(size);
