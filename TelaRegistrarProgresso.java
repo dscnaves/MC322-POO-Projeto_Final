@@ -13,13 +13,13 @@ public class TelaRegistrarProgresso extends JPanel {
 
         JPanel mainPanel = new JPanel(new GridLayout(4, 1, 10, 10));
 
-        // Selecionar o treino
+        // Combobox com os treinos do aluno
         mainPanel.add(new JLabel("Selecione o treino:"));
         ArrayList<TreinoExecutavel> treinos = aluno.getProgresso();
         JComboBox<TreinoExecutavel> treinoComboBox = new JComboBox<>(treinos.toArray(new TreinoExecutavel[0]));
         mainPanel.add(treinoComboBox);
 
-        // Campo para inserir o progresso (ex: percentual)
+        // Slider de progresso
         mainPanel.add(new JLabel("Percentual de Conclusão (%):"));
         JSlider progressoSlider = new JSlider(0, 100, 0);
         progressoSlider.setMajorTickSpacing(25);
@@ -28,7 +28,7 @@ public class TelaRegistrarProgresso extends JPanel {
         progressoSlider.setPaintLabels(true);
         mainPanel.add(progressoSlider);
 
-        // Atualiza o valor da barra ao trocar de treino no combo
+        // Atualiza o slider quando um novo treino é selecionado
         treinoComboBox.addActionListener(e -> {
             TreinoExecutavel selecionado = (TreinoExecutavel) treinoComboBox.getSelectedItem();
             if (selecionado != null) {
@@ -36,31 +36,43 @@ public class TelaRegistrarProgresso extends JPanel {
             }
         });
 
-        // Inicializa com o valor do primeiro treino (se houver)
-        if (!treinos.isEmpty()) {
-            progressoSlider.setValue((int) treinos.get(0).getPercentual());
-        }
+        // Impede mover para trás
+        progressoSlider.addChangeListener(e -> {
+            TreinoExecutavel selecionado = (TreinoExecutavel) treinoComboBox.getSelectedItem();
+            if (selecionado != null) {
+                int atual = progressoSlider.getValue();
+                int anterior = (int) selecionado.getPercentual();
+                if (atual < anterior) {
+                    progressoSlider.setValue(anterior); // trava
+                }
+            }
+        });
 
-        // Botão para registrar
+        // Botão para registrar progresso
         JButton registrarButton = new JButton("Registrar Progresso");
         registrarButton.addActionListener(e -> {
-            TreinoExecutavel treinoSelecionado = (TreinoExecutavel) treinoComboBox.getSelectedItem();
-            if (treinoSelecionado != null) {
-                double percentual = progressoSlider.getValue();
-                aluno.registrarProgresso(treinoSelecionado, percentual);
+            TreinoExecutavel selecionado = (TreinoExecutavel) treinoComboBox.getSelectedItem();
+            if (selecionado != null) {
+                int valorAtual = (int) selecionado.getPercentual();
+                int novoValor = progressoSlider.getValue();
 
-                JOptionPane.showMessageDialog(frame, "Progresso de " + percentual + "% registrado para o treino: " + treinoSelecionado.getTreino().getNome());
-                sistema.salvarDados();
-                // Você pode voltar para a tela anterior após o registro, se quiser
+                if (novoValor > valorAtual) {
+                    double incremento = novoValor - valorAtual;
+                    selecionado.setPercentual(incremento); // Aumenta progresso do treino atual
+                    sistema.salvarDados();
+                    JOptionPane.showMessageDialog(frame, "Progresso de " + novoValor + "% registrado para o treino: " + selecionado.getTreino().getNome());
+                } else {
+                    JOptionPane.showMessageDialog(frame, "Você só pode aumentar o progresso.");
+                }
+
+                // Atualiza tela
                 frame.setContentPane(telaAluno);
                 frame.revalidate();
                 frame.repaint();
-            } else {
-                JOptionPane.showMessageDialog(frame, "Selecione um treino para registrar o progresso.", "Erro", JOptionPane.ERROR_MESSAGE);
             }
         });
         mainPanel.add(registrarButton);
-        
+
         add(mainPanel, BorderLayout.CENTER);
 
         // Botão para voltar
