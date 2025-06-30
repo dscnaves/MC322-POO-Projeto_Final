@@ -1,5 +1,4 @@
 public class ExercicioRepeticoes extends Exercicio {
-
     // São exercicios baseados em repetições (ex: agachamentos, abdominais)
     private int repeticoes;
 

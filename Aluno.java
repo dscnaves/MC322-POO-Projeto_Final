@@ -1,13 +1,9 @@
 // O Aluno herda atributos e metodos da classe Usuário
 import java.io.IOException;
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 // Usuario ja implementa serializavel, logo ja herdamos
-public class Aluno extends Usuario { // Usuario é serializavel (Serialização é o processo de transformar um objeto Java em uma sequência de bytes,)
-    
-    // O serialVersionUID é um identificador de versão da classe. Ele serve para garantir que, ao desserializar um objeto (ler do arquivo), a classe usada hoje ainda é compatível com a classe usada quando o objeto foi salvo.
+public class Aluno extends Usuario {
     private static final long serialVersionUID = 1L; 
     // O Aluno herda atributos e métodos da classe Usuario
     private ArrayList<Professor> professores; // Professores que o Aluno adicionou
@@ -34,18 +30,6 @@ public class Aluno extends Usuario { // Usuario é serializavel (Serialização 
         // Se nao estiverem vazios vms ter todas as informacoes anteriormente registradas
     }
 
-    public void registrarProgresso(TreinoExecutavel progresso, double percentual){
-        progresso.setPercentual(percentual);
-    }
-
-    public void comentarTreino(Treino treino, String comentario){
-
-    }
-
-    public void visualizarHistorico(){
-
-    }
-    
     public ArrayList<TreinoExecutavel> getTreinosExecutaveis(){
         return progresso;
     }
@@ -90,10 +74,5 @@ public class Aluno extends Usuario { // Usuario é serializavel (Serialização 
         progresso.add(treinoExe);
 
     }
-    
 
-    @Override  // Essa será a implementacao do metodo abstrato. Aqui implementaremos a interface especifica do Aluno
-    public void mostrarMenuPrincipal(Scanner entrada){
-        System.out.println("Bem-vindo à interface do aluno!\n");
-    }
 }

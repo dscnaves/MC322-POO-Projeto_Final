@@ -17,7 +17,7 @@ public class TelaVisualizarHistorico extends JPanel {
         scrollPane.setBorder(BorderFactory.createTitledBorder("Treinos Concluídos/Registrados"));
         add(scrollPane, BorderLayout.CENTER);
 
-        // Supondo que a classe Aluno tenha um método getProgresso()
+        // Pegamos o progresso do aluno
         ArrayList<TreinoExecutavel> progressoHistorico = aluno.getProgresso();
 
         if (progressoHistorico.isEmpty()) {

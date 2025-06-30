@@ -1,11 +1,10 @@
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 // Essa classe precisa ser serializavel para podermos guardar as informacoes dos alunos e professores
 // Classes que herdam dessa não precisam implementar serializable pois ja herdam. Enum e Exceptions tambem nao precisam
-    // Usuario é serializavel (Serialização é o processo de transformar um objeto Java em uma sequência de bytes,)
+// Usuario é serializavel (Serialização é o processo de transformar um objeto Java em uma sequência de bytes,)
 
 public abstract class Usuario implements Serializable{ 
     // O serialVersionUID é um identificador de versão da classe. Ele serve para garantir que, ao desserializar um objeto (ler do arquivo), a classe usada hoje ainda é compatível com a classe usada quando o objeto foi salvo.
@@ -58,9 +57,6 @@ public abstract class Usuario implements Serializable{
     public abstract int getNovosRecados(); // Método abstrato para obter a contagem de recados
     public abstract void incrementarNovosRecados(); // Método abstrato para incrementar a contagem de recados
     public abstract void zerarNovosRecados(); // Método abstrato para zerar a contagem de recados
-
-    // Método abstrato que implementaremos na classe aluno e professor
-    public abstract void mostrarMenuPrincipal(Scanner entrada);
 
     // Sobrescreve o método toString para exibir o nome do usuário corretamente em JComboBoxes e outros componentes.
     @Override

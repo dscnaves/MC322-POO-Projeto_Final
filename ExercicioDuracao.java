@@ -1,7 +1,6 @@
 import java.io.Serializable;
 
 public class ExercicioDuracao extends Exercicio{
-    
     // São exercícios baseados em tempo de realização (ex: prancha, corrida)
     private Tempo duracao;
 

@@ -1,5 +1,4 @@
 import java.awt.*;
-import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
@@ -88,9 +87,6 @@ public class TelaCriadorExRepeticoes extends JPanel {
 
         // Cria um novo exercicio
         botaoAdicionar.addActionListener(e -> {
-                ExercicioDuracao exercicio;
-
-
                 // Coleta os dados de preenchimento
                 String nome = campoNome.getText();
                 int repeticoes = Integer.parseInt(campoRepeticoes.getText());
