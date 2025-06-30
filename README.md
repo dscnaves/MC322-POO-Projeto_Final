@@ -71,6 +71,14 @@ Este projeto é um sistema de gerenciamento de treinos físicos com funcionalida
 - Permitem que, em uma mesma janela, diferentes painéis (telas) sejam exibidos conforme o fluxo seguido pelo usuário.
 
 ---
+## Testes rápidos
+### 🔹 `Criamos alguns Alunos e Professores para serem usados como teste, assim você pode apenas fazer o login usando:`
+- Usuarios para teste de professor -> UserName: sandra Senha: 1234
+- Usuarios para teste de professor -> UserName: esther Senha: 1234
+- Usuarios para teste de aluno-> UserName: rafael_aluno Senha: 1234
+- Usuarios para teste de aluno-> UserName: santiago_aluno Senha: 1234
+
+---
 
 ## 🛠️ Tecnologias Utilizadas
 - **Java** - Versão utilizada: 21.0.5
