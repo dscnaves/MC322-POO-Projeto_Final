@@ -5,6 +5,8 @@ import javax.swing.*;
 public class TelaVisualizarTreinos extends JPanel {
     public TelaVisualizarTreinos(JFrame frame, TelaAluno telaAluno, Aluno aluno) {
 
+        setLayout(new BorderLayout());
+
         JLabel tituloLabel = new JLabel("Meus Treinos Recebidos", SwingConstants.CENTER);
         tituloLabel.setFont(new Font("Arial", Font.BOLD, 18));
         add(tituloLabel, BorderLayout.NORTH);
@@ -16,8 +18,6 @@ public class TelaVisualizarTreinos extends JPanel {
         scrollPane.setBorder(BorderFactory.createTitledBorder("Lista de Treinos"));
         add(scrollPane, BorderLayout.CENTER);
 
-        // Supondo que a classe Aluno tenha um método getTreinosRecebidos()
-        // que retorna uma lista de objetos Treino.
         ArrayList<Treino> treinos = aluno.getTreinosRecebidos();
 
         if (treinos.isEmpty()) {
@@ -25,20 +25,27 @@ public class TelaVisualizarTreinos extends JPanel {
         } else {
             for (Treino treino : treinos) {
                 // Aqui criamos um painel para cada treino
-                JPanel treinoItemPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+                JPanel treinoItemPanel = new JPanel();
+                treinoItemPanel.setLayout(new BoxLayout(treinoItemPanel, BoxLayout.Y_AXIS));
                 treinoItemPanel.setBorder(BorderFactory.createEtchedBorder());
+                
                 treinoItemPanel.add(new JLabel("Nome do Treino: " + treino.getNome()));
                 treinoItemPanel.add(new JLabel("Dificuldade: " + treino.getDificuldade()));
-
-                // Exemplo: Botão para ver detalhes de um treino específico (opcional)
-                JButton detalhesButton = new JButton("Ver Detalhes");
-                detalhesButton.addActionListener(e -> {
-                    // Implementação para mostrar os detalhes do treino
-                    JOptionPane.showMessageDialog(frame, "Detalhes do Treino: " + treino.toString());
-                });
-                treinoItemPanel.add(detalhesButton);
+                
+                // Adiciona os detalhes dos exercícios
+                ArrayList<Exercicio> exercicios = treino.getArrayExercicios();
+                if (exercicios.isEmpty()) {
+                    treinoItemPanel.add(new JLabel("  - Este treino não possui exercícios."));
+                } else {
+                    treinoItemPanel.add(new JLabel("  - Exercícios:"));
+                    for (Exercicio exercicio : exercicios) {
+                        // Usa o método descreverExercicio() para obter os detalhes completos do exercício
+                        treinoItemPanel.add(new JLabel("    - " + exercicio.descreverExercicio()));
+                    }
+                }
 
                 treinosPanel.add(treinoItemPanel);
+                treinosPanel.add(Box.createVerticalStrut(10)); // Espaço entre os treinos
             }
         }
 
