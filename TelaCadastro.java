@@ -1,4 +1,6 @@
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+
 import java.awt.*;
 
 // Usamos JPanel para mudar entre "telas" 
@@ -8,8 +10,9 @@ public class TelaCadastro extends JPanel {
     private JPasswordField campoSenha;
 
     public TelaCadastro(JFrame frame, Sistema sistema, TelaLogin telaLogin) {
-        setLayout(new GridLayout(0,1)); //
-
+        setLayout(new GridLayout(0,1));
+        setBorder(new EmptyBorder(30, 40, 30, 40));
+        
         campoNome = new JTextField();
         campoUserName = new JTextField();
         campoSenha = new JPasswordField();

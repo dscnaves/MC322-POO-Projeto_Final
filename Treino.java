@@ -49,7 +49,20 @@ public class Treino implements Serializable{
 
     @Override
     public String toString() {
-        return "Treino: " + nome +
-               ",\n Dificuldade: " + dificuldade;
+        StringBuilder sb = new StringBuilder();
+        sb.append("Nome do Treino: ").append(nome).append("\n");
+        sb.append("Dificuldade: ").append(dificuldade).append("\n");
+        sb.append("--------------------\n");
+        sb.append("Exercícios:\n");
+
+        if (exercicios.isEmpty()) {
+            sb.append("  - Nenhum exercício adicionado.\n");
+        } else {
+            for (Exercicio exercicio : exercicios) {
+                sb.append("  - ").append(exercicio.descreverExercicio()).append("\n");
+                sb.append("--------------------\n"); // Adiciona uma linha de separação entre os exercícios
+            }
+        }
+        return sb.toString();
     }
 }
