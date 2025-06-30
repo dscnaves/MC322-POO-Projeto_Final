@@ -325,7 +325,7 @@ direction LR
     ExercicioRepeticoes --> Exercicio
     ExercicioDuracao --> Exercicio
     Aluno <|-- Usuario
-    Professor <|-- Usuário
+    Professor <|-- Usuario
 
 ```
 
