@@ -45,6 +45,10 @@ public class Aluno extends Usuario { // Usuario é serializavel (Serialização 
     public void visualizarHistorico(){
 
     }
+    
+    public ArrayList<TreinoExecutavel> getTreinosExecutaveis(){
+        return progresso;
+    }
 
     @Override
     public int getNovosRecados(){

@@ -1,5 +1,6 @@
 import java.awt.*;
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 
 // Usamos JPanel para mudar entre "telas" 
 public class TelaLogin extends JPanel {
@@ -9,7 +10,8 @@ public class TelaLogin extends JPanel {
 
     public TelaLogin(JFrame frame, Sistema sistema) {
         setLayout(new GridLayout(0,1));
-
+        setBorder(new EmptyBorder(30, 40, 30, 40));
+        
         campoUserName = new JTextField();
         campoSenha = new JPasswordField();
         JButton botaoLogin = new JButton("Entrar");

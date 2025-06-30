@@ -67,8 +67,9 @@ public class TelaAluno extends JPanel {
 
         // Botão para visualizar histórico de treinos
         visualizarHistoricoButton.addActionListener(e -> {
-            // A ser implementado em outra tela
-            JOptionPane.showMessageDialog(frame, "Funcionalidade a ser implementada.");
+            frame.setContentPane(new TelaHistorico(frame, this, aluno));
+            frame.revalidate();
+            frame.repaint();
         });
 
         adicionarProfButton.addActionListener(e -> {
