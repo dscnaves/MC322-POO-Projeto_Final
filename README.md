@@ -66,7 +66,7 @@ Este projeto é um sistema de gerenciamento de treinos físicos com funcionalida
 ### 🔹 `ExercicioRepeticao` *(herda de Exercicio)*
 - Define exercícios baseados em **repetições**.
 
-### 🔹 `Classes do package Tela`
+### 🔹 `Classes Telas`
 - São usadas para controlar a navegação entre painéis da interface.
 - Permitem que, em uma mesma janela, diferentes painéis (telas) sejam exibidos conforme o fluxo seguido pelo usuário.
 
@@ -95,9 +95,16 @@ Para executar o programa siga os seguintes passos:
 
 --- 
 
+## Desenvolvedoras
+- Ana Luiza Mota Gomes - 242389
+- Anita Ramos Almeida - 173273
+- Daniela Souza Cardoso Naves - 281141
+- Priscilla Almeida - 176205
+
+---
 ## Diagrama de Classes (UML)
 
-mermaid
+```mermaid
 ---
 config:
   class:
