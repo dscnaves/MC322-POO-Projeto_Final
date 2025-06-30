@@ -5,10 +5,7 @@ import java.util.Scanner;
 
 // Usuario ja implementa serializavel, logo ja herdamos
 public class Professor extends Usuario {
-    
-    // O serialVersionUID é um identificador de versão da classe. Ele serve para garantir que, ao desserializar um objeto (ler do arquivo), a classe usada hoje ainda é compatível com a classe usada quando o objeto foi salvo.
-    private static final long serialVersionUID = 1L; 
-
+    private static final long serialVersionUID = 1L;  
     // O Professor herda atributos e métodos da classe Usuario
     private ArrayList<Aluno> alunos; // Alunos que sao deste professor pois o aluno escolheu-o
     private ArrayList<Treino> treinosCriados;
@@ -30,20 +27,11 @@ public class Professor extends Usuario {
         if (treinosCriados == null) treinosCriados = new ArrayList<>();
         // Se nao estiverem vazios vms ter todas as informacoes anteriormente registradas
     }
-    
-    // Cria um novo treino e o adiciona à lista de treinos criados
-    public void criarTreino(){
-
-    }
-
-    // Adiciona um novo exercício ao treino que está sendo criado
-    public void adicionarExercicio(){
-        
-    }
 
     public void addAluno(Aluno aluno){ // Quando um aluno selecionar esse professor ja colocamos ele no array de alunos deste prof
         alunos.add(aluno);
     }
+
     // Adiciona um novo treino aos treinos criados
     public void adicionarTreino(Treino treino){
         treinosCriados.add(treino);
@@ -72,20 +60,4 @@ public class Professor extends Usuario {
         return treinosCriados;
     }
 
-    public void atribuirTreino(Aluno aluno, Treino treino) {
-
-    }
-
-    public void verComentarios(){
-
-    }
-
-    public void responderComentario(){
-
-    }
-
-    @Override // Essa será a implementacao do metodo abstrato. Aqui implementaremos a interface especifica do Professor
-    public void mostrarMenuPrincipal(Scanner entrada){
-        System.out.println("Bem-vindo à interface do professor!\n");
-    }
 }

@@ -30,7 +30,6 @@ public class TelaIndicarParaAluno extends JPanel {
         centro.add(painelCampos);
 
         // Dimensões padronizadas
-        Dimension camposSize = new Dimension(400, 35);
         Dimension botaoSize = new Dimension(400, 50);
 
         // Criação do campo de escolha dos treinos

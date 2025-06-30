@@ -19,7 +19,6 @@ public class TelaVisualizarAlunos extends JPanel{
         if (alunos.isEmpty()) {
             alunosPanel.add(new JLabel("Não há nenhum aluno."));
         } else {
-            Dimension botaoSize = new Dimension(400, 50);
             for (Aluno i : alunos) {
                 JPanel alunoPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
                 alunoPanel.setBorder(BorderFactory.createEtchedBorder());

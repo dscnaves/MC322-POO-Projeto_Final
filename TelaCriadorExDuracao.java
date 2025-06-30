@@ -80,8 +80,6 @@ public class TelaCriadorExDuracao extends JPanel {
 
         // Cria um novo exercicio
         botaoAdicionar.addActionListener(e -> {
-                ExercicioDuracao exercicio;
-
                 // Coleta os dados de preenchimento
                 String nome = campoNome.getText();
                 int numDuracao = Integer.parseInt(campoDuracao.getText());

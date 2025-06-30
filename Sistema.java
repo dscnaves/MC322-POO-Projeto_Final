@@ -91,10 +91,4 @@ public class Sistema {
         return alunos;
     }
 
-
-
-    // cast: é forcar a conversão. Ex: vamos forcar a conversao de double para int.
-    // double numero = 9.75;
-    // int inteiro = (int) numero;  // cast de double para int
-    // System.out.println(inteiro); // Saída: 9 (parte decimal é descartada)
 }

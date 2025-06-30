@@ -31,6 +31,7 @@ public class TelaLogin extends JPanel {
             String userName = campoUserName.getText(); // Pegamos o que a pessoa digitou e guardamos em uma variavel
             String senha = new String(campoSenha.getPassword());
 
+            // Tratamento de erro usando exceptions
             try {
                 //O login tambem é tratado com execption logo precisamos do try catch
                 Usuario user = sistema.login(userName, senha); // Como o metodo login retorna um usuario vamos guarda-lo aqui. Se não houver nenhum erro executará as linhas abaixo
